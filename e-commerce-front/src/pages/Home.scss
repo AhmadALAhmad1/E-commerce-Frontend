@@ -1,150 +1,363 @@
-//Hero
-.hero{
+// //Hero
+body{
+  background-color: black;
+  color: white !important;
+}
+// .hero{
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   text-align: center;
+//   align-items: center;
+//   gap: 3vh;
+// }
+
+// .hero-p {
+//   margin: auto;
+//   max-width: 30%;
+// }
+
+// .hero-btn {
+//   display: flex;
+//   justify-content: center;
+// }
+// .hero-btn button {
+//   border-radius: 100px;
+//   font-weight: bold;
+//   font-size: 24px;
+//   background-color: #ff8b3d;
+//   padding: 7px 14px;
+//   cursor: pointer;
+//   border: none;
+//   width: 10vw;
+// }
+// @keyframes fade-in {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(-20px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+// .hero-h1,
+// .hero-p,
+// .hero-btn {
+//   opacity: 0;
+//   animation: fade-in 1s ease-in-out forwards;
+// }
+
+// .hero-h1 {
+//   animation-delay: 0.2s;
+// }
+
+// .hero-p {
+//   animation-delay: 0.4s;
+// }
+
+// .hero-btn {
+//   animation-delay: 0.6s;
+// }
+
+// .circle {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+//   height: 310px;
+//   margin-top: -30px;
+//   z-index: -1;
+//   width: 570px;
+//   border-radius: 300px 300px 20px 20px;
+//   background-color: #f2f2f2;
+//   box-shadow: 0px 0px 40px rgb(214, 17, 35), 0 10px 20px rgba(163, 0, 0, 0.1);
+// }
+
+// .circle img {
+//     height: 286px;
+//     width: 210px;
+//     opacity: 0;
+//     position: absolute;
+//     top: 57.5%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     animation: fade-in-down 2s forwards;
+// }
+
+// @keyframes fade-in-down {
+//   0% {
+//     opacity: 0;
+//     transform: translate(-50%, -100%);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translate(-50%, -50%);
+//   }
+// }
+// //////////////////Home///////////////////////
+
+// //Search Bar
+
+
+// /* You just need to get this field - start */
+
+// .search-bar {
+//   width: 50vw;
+//   display: flex;
+//   margin: auto;
+//   padding: 35px;
+// }
+
+// .search-input {
+//   width: 100%;
+//   font-family: 'Montserrat', sans-serif;
+//   font-size: 16px;
+//   padding: 15px 45px 15px 15px;
+//   background-color: #eaeaeb;
+//   color: #6c6c6c;
+//   border-radius: 100px;
+//   border:none;
+//   transition: all .4s;
+// }
+
+// .search-input:focus {
+//   border:none;
+//   outline:none;
+//   box-shadow: 0 1px 12px #b8c6db;
+//   -moz-box-shadow: 0 1px 12px #b8c6db;
+//   -webkit-box-shadow: 0 1px 12px #b8c6db;
+// }
+
+// .search-btn {
+//   background-color: transparent;
+//   font-size: 18px;
+//   border:none;
+//   color: #6c6c6c;
+//   transition: all .4s;
+// }
+
+// .search-btn:hover {
+//   transform: scale(1.2);
+//   cursor: pointer;
+//   color: black;
+// }
+
+// .search-btn:focus {
+//   outline:none;
+//   color:black;
+// }
+
+// /* You just need to get this field - end */
+
+////////////////////////{NEW HERO}////////////////////////////
+
+.container-hero{
   display: flex;
+  flex-direction: row;
+  gap: 15%;
+  min-height: 92vh;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  gap: 3vh;
 }
 
-.hero-p {
-  margin: auto;
-  max-width: 30%;
+
+.hero-sec1 {
+  padding-left: 3rem;
+    margin-top: 100px;
+    margin-left: -10%;
 }
 
-.hero-btn {
-  display: flex;
-  justify-content: center;
+
+.container-hero{
+background-color:black;
+color: white;
 }
-.hero-btn button {
-  border-radius: 100px;
+
+.hero-h1{
+  font-size: 50px;
+}
+.hero-p{
+padding-left: 1rem;
+}
+
+
+.hero-btn button{
+  border-radius: 25px;
+  width: 135px;
+  height: 45px;
+  font-size: 18px;
   font-weight: bold;
-  font-size: 24px;
-  background-color: #ff8b3d;
-  padding: 7px 14px;
-  cursor: pointer;
   border: none;
-  width: 10vw;
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-left: 100px;
+  color: white;
+  background-color: #f26e15;
+  margin-top: 10vh;
+
+
 }
 
-.hero-h1,
-.hero-p,
-.hero-btn {
-  opacity: 0;
-  animation: fade-in 1s ease-in-out forwards;
+.hero-btn button:hover{
+  background-color: white;
+  color: #ff8b3d;
+  cursor: pointer;
+
+}
+.hero-p{
+  width: 50%;
+  height: 0px;
 }
 
-.hero-h1 {
-  animation-delay: 0.2s;
-}
 
-.hero-p {
-  animation-delay: 0.4s;
-}
+// .img-protein{
+//   width: 260px;
+//   height: 400px;
+//   object-fit: cover;
+//   margin-top: 100px;
+// }
 
-.hero-btn {
-  animation-delay: 0.6s;
-}
 
-.circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// .img-protein1,
+// .img-protein2,
+// .img-protein3,
+// .img-protein4
+// {
+//   width: 260px;
+//   height: 300px;
+
+// }
+
+.hero-sec2 {
   position: relative;
-  height: 310px;
-  margin-top: -30px;
-  z-index: -1;
-  width: 570px;
-  border-radius: 300px 300px 20px 20px;
-  background-color: #f2f2f2;
-  box-shadow: 0px 0px 40px rgb(214, 17, 35), 0 10px 20px rgba(163, 0, 0, 0.1);
+  top: 60vh;
+  right: 10vw;
 }
 
-.circle img {
-    height: 286px;
-    width: 210px;
-    opacity: 0;
-    position: absolute;
-    top: 57.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: fade-in-down 2s forwards;
+.img-protein1 {
+  position: absolute;
+  transform: translate3d(-32%, -124%, 0);
+  width: 387px;
+  height: 360px;
+  z-index: 1;
+  opacity: 0;
+  animation: fade-in-down 2s forwards 0.5s;
+}
+
+.img-protein2 {
+  position: absolute;
+  transform: translate3d(51%, -119%, 0) rotate(9deg);
+  width: 252px;
+  height: 256px;
+  z-index: 2;
+  opacity: 0;
+  animation: fade-in-down 2s forwards 0.9s;
+}
+
+.img-protein3 {
+  position: absolute;
+  transform: translate3d(-61%, -70%, 0);
+  width: 280px;
+  height: 267px;
+  z-index: 2;
+  opacity: 0;
+  animation: fade-in-down 2s forwards 1s;
+}
+
+.img-protein4 {
+  position: absolute;
+  transform: translate3d(1%, -72%, 0);
+  background-size: 100px 100px;
+  width: 280px;
+  height: 289px;
+  z-index: 2;
+  opacity: 0;
+  animation: fade-in-down 2s forwards 1.3s;
 }
 
 @keyframes fade-in-down {
   0% {
     opacity: 0;
-    transform: translate(-50%, -100%);
+    transform: translateX(50%);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%);
   }
 }
-//////////////////Home///////////////////////
-
-//Search Bar
-
-
-/* You just need to get this field - start */
-
-.search-bar {
-  width: 50vw;
-  display: flex;
-  margin: auto;
-  padding: 35px;
-}
-
-.search-input {
-  width: 100%;
+/////////////////////////////////CAROUSEL/////////////////////
+.carousel-h1{
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 15vh;
+}
+.carousel-p{
+  text-align: center;
+}
+
+/////////////////////////About//////////////////////
+
+.home-about{
+  display: flex;
+  flex-direction: row;
+justify-content: center;
+gap: 7%;
+  height: 70vh;
+}
+
+.about-sec1{
+  width: 30%;
+ 
+}
+
+.about-sec2 img{
+  height: 400px;
+  width: 270px;
+
+}
+
+.about-sec2{
+  // border-radius: 1048px;
+    border-color:#c50f1b;
+    border-width: 37px;
+    border-style: solid;
+    margin-top: 0;
+    height: 396px;
+}
+.about-sec2 :nth-child(1)
+{
+  border-color: #d2a869;
+  border-width: 37px;
+  border-style: solid;
+  margin-top: 0;
+  height: 396px;
+}
+
+
+.about-sec1 p{
+max-width: 100%;
+padding-left:3%
+}
+
+.ul-about li{
+  list-style: none;
   font-size: 16px;
-  padding: 15px 45px 15px 15px;
-  background-color: #eaeaeb;
-  color: #6c6c6c;
-  border-radius: 100px;
-  border:none;
-  transition: all .4s;
+  font-weight: 500;
+  line-height: 50px;
 }
-
-.search-input:focus {
-  border:none;
-  outline:none;
-  box-shadow: 0 1px 12px #b8c6db;
-  -moz-box-shadow: 0 1px 12px #b8c6db;
-  -webkit-box-shadow: 0 1px 12px #b8c6db;
-}
-
-.search-btn {
-  background-color: transparent;
+.home-about-btn button {
+  border-radius: 25px;
+  width: 135px;
+  height: 45px;
   font-size: 18px;
-  border:none;
-  color: #6c6c6c;
-  transition: all .4s;
+  font-weight: bold;
+  border: none;
+  color: white;
+  background-color: #f26e15;
+  background-image: linear-gradient(to right, #f26e15, #f26e15 50%, white 50%);
+  background-size: 200% 100%;
+  transition: background-position 0.9s ease;
 }
 
-.search-btn:hover {
-  transform: scale(1.2);
+.home-about-btn button:hover {
+  background-position: -100% 0;
+  color: #ff8b3d;
   cursor: pointer;
-  color: black;
 }
-
-.search-btn:focus {
-  outline:none;
-  color:black;
-}
-
-/* You just need to get this field - end */
-

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Nav.scss";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
-import image from "../assets/image-protein.png";
 function Nav() {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -76,7 +75,7 @@ function Nav() {
           </div>
         </div>
       </nav>
-{/*       
+      {/*       
       <div className="hero">
         <h1 className="hero-h1">
           Let's Build Wellness Rather
