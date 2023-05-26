@@ -9,9 +9,12 @@ import image4 from "../assets/protein.png";
 import image5 from "../assets/proteingold.png";
 import { BiSearch } from "react-icons/bi";
 import LogoSlider from "../components/LogoSlider";
-import {FcApproval} from 'react-icons/fc'
+import { FcApproval } from "react-icons/fc";
 import Slider from "../components/Carousel";
 import Carousel from "../components/Carousel";
+import Review from "../components/Review";
+import Caro from "../components/Caro";
+
 const Home = () => {
   return (
     <>
@@ -54,24 +57,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container-content">
-        <div className="carousel">
-          <div className="carousel-h1">
-            <h1>OUR LATEST PRODUCTS</h1>
-            <p className="carousel-p">
-              Lorem ipsum amet consectetur adipisicing elit.
-              <br />
-              Voluptates et, praesentium vi , sit amet c
-              <br />
-              Lorem ipsum dolor
-            </p>
-          </div>
-          <Carousel />
+      <div className="container-content-caro">
+    
+          <Caro />
         </div>
-      </div>
+
       <div className="home-about">
         <div className="about-sec1">
-          <h1>
+          <h1 className="about-h1">
             Feel Healthier and Strong <br />
             Today
           </h1>
@@ -81,23 +74,38 @@ const Home = () => {
             corem.s corem.s corem.s
           </p>
           <ul className="ul-about">
-            <li><FcApproval /> High Quality</li>
-            <li><FcApproval /> Fast Delivery </li>
-            <li><FcApproval /> Variety in Products</li>
-            
+            <li>
+              <FcApproval /> High Quality
+            </li>
+            <li>
+              <FcApproval /> Fast Delivery{" "}
+            </li>
+            <li>
+              <FcApproval /> Variety in Products
+            </li>
           </ul>
 
           <div className="home-about-btn">
             <button>Know More</button>
           </div>
         </div>
-          <div className="box1"></div>
+
+        <div className="box1"></div>
 
         <div className="about-sec2">
           <img src={image5} alt="" />
           <div className="box2"></div>
-
         </div>
+      </div>
+      <div className="Review-Home">
+        <h1 className="review-title">
+          What the <br /> World is saying
+        </h1>
+        <Review />
+      </div>
+
+      <div className="logo">
+        <LogoSlider />
       </div>
     </>
   );

@@ -8,9 +8,10 @@ $color-blue: #148cb8;
 
 .navbar{
   background-color: black;
-
 }
-
+.nav-toggle .span{
+background-color: white;
+}
 .navbar,
 .wrapper ul li
 {
@@ -274,7 +275,7 @@ $color-white: #ffffff;
           display: block;
           width: 20px;
           height: 2px;
-          background: $color-black;
+          background: white;
           border-radius: 2px;
           margin-left: 14px;
 

@@ -10,6 +10,8 @@ function Carousel() {
     <>
       <div className="slider">
         <div className="slide-track">
+
+
           <div className="slide" >
             <div className="circle" >
               <img  src={image1} />
@@ -19,6 +21,8 @@ function Carousel() {
               <p>price</p>
             </div>
           </div>
+
+          
           <div className="slide">
             <div className="circle">
               <img className="image2" src={image2} />

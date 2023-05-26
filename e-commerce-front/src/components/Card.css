@@ -1,0 +1,140 @@
+.parent-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: -50px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-cardimage {
+  display: block;
+  animation: fadeIn 0.25s;
+  /* height: 25vh; */
+  width: 430px;
+  height: 350px;
+  margin-bottom: -40px;
+  margin-top: -20px;
+}
+.product-cardcaption {
+  display: flex;
+  flex-direction: column;
+  /* background-color:rgb(27, 107, 125); */
+  color: black;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px;
+  border-radius: inherit;
+  animation: fadeIn 0.5s;
+  border-radius: 10px;
+  width: 240px;
+}
+.product-cardtitle {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.product-cardprice {
+  font-weight: 600;
+}
+.product-cardbutton {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.product-cardicon {
+  font-size: 18px;
+  transition: transform 0.25s;
+}
+
+
+.product-card {
+  background-color: white;
+  /* width: 269px; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px;
+  width: 275px;
+  border-radius: 10px;
+}
+
+.card-btn-div {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  /* margin-bottom: 20px; */
+}
+
+.product-cardheader {
+  text-align: center;
+}
+
+.card-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+}
+
+.details-btn,
+.add-cart-btn {
+  border-radius: 5px;
+  border: none;
+  background-color: orange;
+  color: white;
+  font-size: 16px;
+  /* width: 100px; */
+  height: 45px;
+  font-weight: bold;
+}
+
+.product-card {
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.product-card.fade-in {
+  opacity: 1;
+}
+
+.product-card.fade.fade-in {
+  height: 65vh;
+}
+
+/*//////////////////// responsive ////////////////////*/
+
+@media only screen and (max-width: 767px) {
+  .product-cardimage {
+    width: 380px;
+    height: 350px;
+  }
+  .shop-container h1 {
+    margin-top: 12px;
+    padding: 0px 0px 15px;
+  }
+
+  .product-card.fade.fade-in {
+    margin-top: 25px;
+	width: 305px;
+    height: 435px;
+  }
+
+  .shop-container h1 {
+    font-size: 30px;
+  }
+}

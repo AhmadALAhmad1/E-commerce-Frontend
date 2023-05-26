@@ -284,14 +284,16 @@ padding-left: 1rem;
   }
 }
 /////////////////////////////////CAROUSEL/////////////////////
-.carousel-h1{
-  text-align: center;
-  margin-bottom: 15vh;
-}
-.carousel-p{
-  text-align: center;
-}
 
+.container-content-caro{
+  height: 85vh;
+  margin-bottom: 20vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /////////////////////////About//////////////////////
 
 .home-about{
@@ -302,6 +304,7 @@ gap: 7%;
   height: 70vh;
 }
 
+
 .about-sec1{
   width: 30%;
  
@@ -311,6 +314,9 @@ gap: 7%;
   height: 400px;
   width: 270px;
 
+}
+.about-h1{
+  font-size: 40px;
 }
 
 .about-sec2{
@@ -333,7 +339,9 @@ gap: 7%;
 
 .about-sec1 p{
 max-width: 100%;
-padding-left:3%
+padding-left:3%;
+font-size: 18px;
+
 }
 
 .ul-about li{
@@ -341,6 +349,7 @@ padding-left:3%
   font-size: 16px;
   font-weight: 500;
   line-height: 50px;
+  font-size: 18px;
 }
 .home-about-btn button {
   border-radius: 25px;
@@ -360,4 +369,27 @@ padding-left:3%
   background-position: -100% 0;
   color: #ff8b3d;
   cursor: pointer;
+}
+
+/////////////////////////////Review////////////////////////////
+.Review-Home{
+  height: 100vh;
+  margin-top: 30vh;
+}
+.review-title{
+  text-align: center;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 40px;
+}
+////////////////////////LOGOS/////////////////
+.logo{
+  margin-top: 25vh;
+  margin-bottom: -5vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #eee;
+  color: #111;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
