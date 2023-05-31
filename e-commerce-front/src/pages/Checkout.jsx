@@ -3,14 +3,12 @@ import secureLocalStorage from "react-secure-storage";
 import "./Checkout.scss";
 import axios from "axios";
 
-
-
 const Checkout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
+    JSON.parse(localStorage.getItem("cart")) || [],
   );
   const [address, setAddress] = useState({
     name: "",
@@ -18,7 +16,7 @@ const Checkout = () => {
     email: "",
     city: "",
     street: "",
-    building: ""
+    building: "",
   });
 
   const calculateTotal = () => {
@@ -36,8 +34,8 @@ const Checkout = () => {
     if (!token) {
       window.location.href = "/";
     }
-  
-  //////////to get token//////////
+
+    //////////to get token//////////
     try {
       const token = secureLocalStorage.getItem("token");
       if (!token) {
@@ -50,10 +48,10 @@ const Checkout = () => {
       const decodedPayload = JSON.parse(atob(tokenPayload));
       // console.log("Decoded Payload:", decodedPayload);
       const userId = decodedPayload.id;
-console.log("userrrr",userId)
-const role = secureLocalStorage.getItem("role");
-console.log("role", role)
-/////////////////////////////////////////////////////
+      console.log("userrrr", userId);
+      const role = secureLocalStorage.getItem("role");
+      console.log("role", role);
+      /////////////////////////////////////////////////////
       const addressData = {
         name: address.firstName,
         phone: address.phone,
@@ -62,25 +60,23 @@ console.log("role", role)
         street: address.streetAddress,
         building: address.building,
       };
-  
+
       const response = await axios.post(
         "http://localhost:5000/address/createAddress",
         addressData,
-        
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-        
+        },
       );
-      console.log(response.data.address._id)
+      console.log(response.data.address._id);
 
-  
       const orderData = {
         UserID: decodedPayload.id,
         AddressID: response.data.address._id,
-        
+
         cart: cart.map((item) => ({
           name: item.name,
           price: item.price,
@@ -88,17 +84,21 @@ console.log("role", role)
           size: item.size,
           product_id: item.product_id,
           total: item.total,
-
         })),
         total: calculateTotal(), // Calculate the total amount based on cart items
       };
-  
-      await axios.post("http://localhost:5000/order/create", orderData,addressData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+
+      await axios.post(
+        "http://localhost:5000/order/create",
+        orderData,
+        addressData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
-  
+      );
+
       localStorage.removeItem("cart");
       setCart([]);
       setIsSubmitted(true);
@@ -109,19 +109,14 @@ console.log("role", role)
       setIsLoading(false);
     }
   };
-  
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
- 
-
-
-
-
 
   return (
     <>
-<div className="container-checkout">
+      <div className="container-checkout">
         <div className="title-checkout">
           <h2 className="checkout-h1">Product Order Form</h2>
         </div>
@@ -214,12 +209,16 @@ console.log("role", role)
                 }
               />
             </label>
-         
 
-            
-       
+            <button
+              onClick={handleSubmitOrder}
+              className="btn-checkout"
+              type="button"
+            >
+              Place Order
+            </button>
           </form>
-          <div className="Yorder">
+          {/*  <div className="Yorder">
             <table className="checkout-table">
               <tr>
                 <th colSpan="2">Your order</th>

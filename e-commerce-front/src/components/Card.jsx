@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-scroll";
+import { Link,useNavigate } from "react-router-dom";
 import "./Card.css";
+import secureLocalStorage from "react-secure-storage";
+
 
 const Card = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -16,6 +20,17 @@ const Card = () => {
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState("");
 
+  function handleBuyClick() {
+    const token = secureLocalStorage.getItem("token");
+  
+    if (!token) {
+      navigate("/register");
+    } else {
+      navigate("/about");
+    }
+  }
+ 
+  
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -57,7 +72,19 @@ const Card = () => {
     return null; // Return null or a loading spinner while fetching the products
   }
   ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  
   const addToCart = (product) => {
+
+    const token = secureLocalStorage.getItem("token");
+  
+    if (!token) {
+      navigate("/register");
+      return;
+    }
+
+    
+    
     const cartItem = {
       product_id: product._id,
       image: product.image,
@@ -154,14 +181,16 @@ const Card = () => {
                   <div className="product-item-title">{product.name}</div>
                   <div className="product-item-price">{product.price}$</div>
                   <div className="button-pill">
-                    <span className="span-1" onClick={() => addToCart(product)}>
+                    <span className="span-1"
+                    onSubmit={() => handleBuyClick()}
+
+                    onClick={() => addToCart(product)}
+                    >
                       Add to Cart
                     </span>
 
-                    <Link to={`/products/${product.id}`}>
-                      {" "}
-                      <span className="span-2">More Details</span>
-                    </Link>
+                    {/* <Link to={`/shop/${product._id}`}>
+                      <span className="span-2">More Details</span></Link> */}
                   </div>
                 </div>
               </a>

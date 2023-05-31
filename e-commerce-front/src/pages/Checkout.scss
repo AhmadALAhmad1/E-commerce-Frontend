@@ -18,6 +18,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  width: 60%;
 }
 @media (min-width: 1200px)
 {
@@ -32,9 +33,7 @@
   border-radius: 0 0 5px 5px;
   padding: 25px;
 }
-.form-checkout{
-  flex: 4;
-}
+
 .Yorder{
   flex: 2;
 }
@@ -57,7 +56,6 @@ background-color: orange;
   margin: 15px;
 }
 .form-checkout label>span{
-  float: left;
   width: 25%;
   margin-top: 12px;
   padding-right: 10px;

@@ -63,11 +63,11 @@ background-color: white;
 
 .dropdown-menu li a {
   display: block;
-  color: #333;
+  color: #000;
+  font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.1s ease;
+  transition: 0.1s ease;
   font-size: 15px;
-
 }
 
 .dropdown-menu li a:hover {
@@ -92,7 +92,7 @@ a,ul{
 }
 
 .wrapper{
-    margin: 0px 184px;
+  margin: 0px 138px;
 }
 
 
