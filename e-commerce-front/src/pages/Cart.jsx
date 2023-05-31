@@ -37,7 +37,7 @@ const HandleSubmitOrder = () => {
 
   //   try {
   //     const response = await axios.post(
-  //       "https://e-commerce-back-end-production.up.railway.app/api/orders",
+  //       "https://triplea.onrender.com/orders",
   //       {
   //         cart,
   //       },

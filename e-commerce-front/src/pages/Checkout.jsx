@@ -62,7 +62,7 @@ const Checkout = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/address/createAddress",
+        "https://triplea.onrender.com/address/createAddress",
         addressData,
 
         {
@@ -89,7 +89,7 @@ const Checkout = () => {
       };
 
       await axios.post(
-        "http://localhost:5000/order/create",
+        "https://triplea.onrender.com/order/create",
         orderData,
         addressData,
         {

@@ -24,7 +24,7 @@ const Register = () => {
 
   const fetchRegister = async () => {
     try {
-      await axios.post("http://localhost:5000/users/register", {
+      await axios.post("https://triplea.onrender.com/users/register", {
         fullName,
         email,
         password,
@@ -63,7 +63,7 @@ const Register = () => {
 
   const fetchLogin = async () => {
     axios
-      .post("http://localhost:5000/users/login", { email, password })
+      .post("https://triplea.onrender.com/users/login", { email, password })
       .then((res) => {
         secureLocalStorage.setItem("token", res.data.token);
 

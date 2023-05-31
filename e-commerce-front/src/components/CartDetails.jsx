@@ -15,7 +15,7 @@ const CartDetails = () => {
 
   const getById = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/products/${productID}`);
+      const { data } = await axios.get(`https://triplea.onrender.com/products/${productID}`);
       setProduct(data);
     } catch (error) {
       console.log(error);

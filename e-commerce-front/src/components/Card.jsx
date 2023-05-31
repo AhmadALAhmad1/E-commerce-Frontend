@@ -48,7 +48,7 @@ const Card = () => {
   //////////////////////////////////// GET ALL  /////////////////////////////////////////////
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/products/");
+      const { data } = await axios.get("https://triplea.onrender.com/products/");
       setProducts(data.data);
       setFilteredProducts(data.data); // Initialize filtered products with all products
     } catch (error) {
