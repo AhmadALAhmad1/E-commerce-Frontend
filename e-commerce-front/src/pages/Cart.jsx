@@ -1,174 +1,278 @@
-import React, { useState } from "react";
-import "./Cart.scss";
+
 import { MdDeleteForever } from "react-icons/md";
+import React, { useState, useEffect } from "react";
+import "./Cart.scss";
+import axios from "axios";
+import { AiFillDelete } from "react-icons/ai";
+import { BsCart } from "react-icons/bs";
+import { FaCheckCircle } from "react-icons/fa";
+import  secureLocalStorage  from  "react-secure-storage";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image: "https://s.cdpn.io/3/dingo-dog-bones.jpg",
-      title: "Dingo Dog Bones",
-      description:
-        "The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.",
-      price: 12.99,
-      quantity: 2,
-      linePrice: 25.98,
-    },
-    {
-      id: 2,
-      image:
-        "https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png",
-      title: "Nutro™ Adult Lamb and Rice Dog Food",
-      description:
-        "Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!",
-      price: 45.99,
-      quantity: 1,
-      linePrice: 45.99,
-    },
-    {
-      id: 2,
-      image:
-        "https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png",
-      title: "Nutro™ Adult Lamb and Rice Dog Food",
-      description:
-        "Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!",
-      price: 45.99,
-      quantity: 1,
-      linePrice: 45.99,
-    },
-  ]);
 
-  const taxRate = 0.05;
-  const shippingRate = 15.0;
-  const fadeTime = 300;
 
-  const updateQuantity = (id, quantity) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === id) {
-        const linePrice = item.price * quantity;
-        return { ...item, quantity, linePrice };
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitted, setISSubmitted] = useState(false);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []);
+
+const navigate = useNavigate();
+const HandleSubmitOrder = () => {
+  navigate("/checkout");
+};
+
+
+
+  
+  const handleSubmitOrder = async () => {
+    setIsLoading(true);
+    setErrorMessage("");
+    const token = secureLocalStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/register";
+    }
+
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://e-commerce-back-end-production.up.railway.app/api/orders",
+  //       {
+  //         cart,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     setISSubmitted(true);
+  //     localStorage.removeItem("cart");
+  //     setCart([]);
+  //   } catch (error) {
+  //     console.error(error.response.data.error);
+  //     setErrorMessage(error.response.data.error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // const handleDelete = (id) => {
+  //   setCart((cart) => cart.filter((i) => i.product_id !== id));
+    
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  //     window.location.reload();
+  // };
+  }
+  const updateQuantity = (itemId, newQuantity) => {
+    const updatedCart = cart.map((item) => {
+      if (item.product_id === itemId) {
+        return {
+          ...item,
+          quantity: newQuantity <0 ? 0 : newQuantity,
+        };
       }
       return item;
     });
-    setCartItems(updatedCartItems);
-    recalculateCart();
+    setCart(updatedCart);
   };
-
-  const removeItem = (id) => {
-    const updatedCartItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCartItems);
-    recalculateCart();
-  };
-
-  const recalculateCart = () => {
-    let subtotal = 0;
-    cartItems.forEach((item) => {
-      subtotal += item.linePrice;
-    });
-
-    const tax = subtotal * taxRate;
-    const shipping = subtotal > 0 ? shippingRate : 0;
-    const total = subtotal + tax + shipping;
-
-    // Update totals display
-    const totalsValueElements = document.getElementsByClassName("totals-value");
-    Array.from(totalsValueElements).forEach((element) => {
-      element.style.display = "none";
-    });
-
-    document.getElementById("cart-subtotal").innerHTML = subtotal.toFixed(2);
-    document.getElementById("cart-tax").innerHTML = tax.toFixed(2);
-    document.getElementById("cart-shipping").innerHTML = shipping.toFixed(2);
-    document.getElementById("cart-total").innerHTML = total.toFixed(2);
-
-    if (total === 0) {
-      document.getElementsByClassName("checkout")[0].style.display = "none";
-    } else {
-      document.getElementsByClassName("checkout")[0].style.display = "block";
-    }
-
-    Array.from(totalsValueElements).forEach((element) => {
-      element.style.display = "inline-block";
-      element.style.animation = "fadeIn " + fadeTime + "ms";
-    });
-  };
-
-  // //////////////////////JSX/////////////////////
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
-    <div className="cart-parent">
-      <h1 className="h1-cart">Shopping Cart</h1>
+    <div>
+      <h1 className='shopping-cart'>Shopping Cart</h1>
+      <div className='cart-table-view'>
+        <div className='table-cart'>
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.length === 0 ? (
+                <tr>
+                  <td colSpan='7'>Your cart is empty.</td>
+                </tr>
+              ) : (
+                <>
+                  {cart.map((item) => (
+                    <tr key={item.product_id}>
+                      <td>
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className='cart-image'
+                        />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>
+                        {item.size}
+                      </td>
+                      <td>
+                        <button
+                          className='increment-btn-cart'
+                          onClick={() =>
+                            updateQuantity(item.product_id, +item.quantity - 1)
+                          }
+                        >
+                          -
+                        </button>
+                        {item.quantity}
 
-      <div className="shopping-cart">
-        <div className="column-labels">
-          <label className="product-image">Image</label>
-          <label className="product-details product-details-1">Product</label>
-          <label className="product-price">Price</label>
-          <label className="product-quantity">Quantity</label>
-          <label className="product-removal">Remove</label>
-          <label className="product-line-price">Total</label>
+                        <button
+                          className='increment-btn-cart'
+                          onClick={() =>
+                            updateQuantity(item.product_id, +item.quantity + 1)
+                          }
+                        >
+                          +
+                        </button>
+                      </td>
+                      <td>{item.price}</td>
+                      <td>
+                        <AiFillDelete
+                          className='delete-icon-row'
+                          // onClick={() => handleDelete(item.product_id)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </>
+              )}
+            </tbody>
+          </table>
+
+          <div className='cart-item-responsive'>
+            {cart.length === 0 ? (
+              <tr>
+                <td colSpan='7'>Your cart is empty.</td>
+              </tr>
+            ) : (
+              <>
+                {cart.map((item) => (
+                  <div key={item.product_id} className='cart-items-rspnv'>
+                    <div className='list-rspnv delete-icon'>
+                    <MdDeleteForever
+                        className='delete-icon-row'
+                        // onClick={() => handleDelete(item.id)}
+                      /> 
+                    </div>
+                    <div className='cart-image-rspnv-div'>
+                      {" "}
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className='cart-image-rspnv'
+                      />
+                    </div>
+                    <div className='list-rspnv'>
+                      <div>Product: </div>
+                      <div> {item.name}</div>
+                    </div>
+                    {/* <div className='list-rspnv'>
+                      <div>Color: </div>
+                      <div>{item.color}</div>
+                    </div>*/}
+                    <div className='list-rspnv'>
+                      <div>Size: </div>
+                      <div>{item.size}</div>
+                    </div> 
+                    
+                    <div className='list-rspnv'>
+                      <div>Quantity: </div>
+                      <div className='increment-div-rspnsv'>
+                        <button
+                          className='increment-btn-cart'
+                          onClick={() =>
+                            updateQuantity(item.product_id, +item.quantity + 1)
+                          }
+                        >
+                          +
+                        </button>
+                        {item.quantity}
+                        <button
+                          className='increment-btn-cart'
+                          onClick={() =>
+                            updateQuantity(item.product_id, +item.quantity - 1)
+                          }
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                    <div className='list-rspnv'>
+                      <div>
+                        <div>Price:</div>
+                      </div>
+
+                      <div>
+                        <div>{item.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
         </div>
-        {cartItems.map((item) => (
-          <div className="product" key={item.id}>
-            <div className="product-image">
-              <img src={item.image} alt="Product" />
+        {isSubmitted ? (
+          <div className='success-message'>
+            {" "}
+            <FaCheckCircle className='success' /> Order submitted successfully!
+          </div>
+        ) : (
+          <div className='cart-discription'>
+            <h3 className='cart-description-title'>
+              {" "}
+              <BsCart className='cart-icon-cart' /> Cart Description
+            </h3>
+            <div className='order-details'>
+              <div>
+                <p className='order-detail-title'>Order details:</p>
+                <ul className='cart-list'>
+                  {cart.map((item) => (
+                    <li key={item.product_id}>
+                      <p className='cart-item-quantity'>{item.quantity} </p>{" "}
+                      {item.name} / price : {item.price} / size : {item.size}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>Created At: {new Date().toLocaleString()}</div>
+              <div className='cart-total-price'>
+                Total Price :{" "}
+                {cart.reduce(
+                  (total, item) => total + item.price * item.quantity,
+                  0
+                )}{" "}
+                $
+              </div>
             </div>
-            <div className="product-details">
-              <div className="product-title">{item.title}</div>
-            </div>
-            <div className="product-price product-price-1">{item.price.toFixed(2)}</div>
-            <div className="product-quantity">
-              <input
-                type="number"
-                value={item.quantity}
-                min="1"
-                onChange={(e) =>
-                  updateQuantity(item.id, parseInt(e.target.value))
-                }
-              />
-            </div>
-            <div className="product-removal">
+            <div className='submit-cart'>
               <button
-                className="remove-product"
-                onClick={() => removeItem(item.id)}
+               onClick={HandleSubmitOrder}
+                // onClick={handleSubmitOrder}
+                className='submit-order'
+                disabled={isLoading}
               >
-                <MdDeleteForever />
+                {isLoading ? "Submitting..." : "Proceed to Checkout" }
               </button>
-            </div>
-            <div className="product-line-price product-line-price-1 ">
-              {item.linePrice.toFixed(2)}
-            </div>
-          </div>
-        ))}
-        <div className="totals">
-          <div className="totals-item">
-            <label>Subtotal</label>
-            <div className="totals-value" id="cart-subtotal">
-              {cartItems
-                .reduce((total, item) => total + item.linePrice, 0)
-                .toFixed(2)}
+              {errorMessage && (
+                <div className='error-message'>{errorMessage}</div>
+              )}
             </div>
           </div>
-          <div className="totals-item">
-            <label>Tax</label>
-            <div className="totals-value" id="cart-tax">
-              0.00
-            </div>
-          </div>
-          <div className="totals-item">
-            <label>Shipping</label>
-            <div className="totals-value" id="cart-shipping">
-              0.00
-            </div>
-          </div>
-          <div className="totals-item totals-item-total">
-            <label> Total</label>
-            <div className="totals-value" id="cart-total">
-              0.00
-            </div>
-          </div>
-        </div>
-        <button className="checkout">Checkout</button>
+        )}
       </div>
     </div>
   );

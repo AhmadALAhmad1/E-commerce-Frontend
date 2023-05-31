@@ -3,6 +3,11 @@
 .checkout-h1{
     text-align: center;
 }
+
+.total-td{
+  font-weight: 700;
+
+}
 .container-checkout{
   font-family: 'Roboto Condensed', sans-serif;
     color: black;
@@ -34,11 +39,7 @@
   flex: 2;
 }
 .title-checkout{
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #5195A8), color-stop(100, #70EAFF));
-  background: -moz-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: -ms-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: -o-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: linear-gradient(to bottom right, #5195A8 0%, #70EAFF 100%);
+background-color: orange;
   border-radius:5px 5px 0 0 ;
   padding: 20px;
   color: #f6f6f6;
@@ -63,19 +64,13 @@
 }
  .form-checkout input[type="text"],  .form-checkout input[type="tel"],  .form-checkout input[type="email"], .form-checkout  select
 {
-  width: 70%;
   height: 30px;
   padding: 5px 10px;
   margin-bottom: 10px;
   border: 1px solid #dadada;
   color: #888;
 }
-.form-checkout select{
-  width: 72%;
-  height: 45px;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-}
+
 .Yorder{
   margin-top: 15px;
   height: 600px;
@@ -114,7 +109,7 @@
   padding: 10px;
   border: none;
   border-radius: 30px;
-  background: #52ad9c;
+  background: orange;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
@@ -122,4 +117,46 @@
 .btn-checkout:hover{
   cursor: pointer;
   background: #428a7d;
+}
+
+.form-checkout span{
+color: black;
+}
+
+@media screen and (max-width: 768px) {
+
+.d-flex{
+  padding: 0;
+}
+
+.form-checkout {
+  flex: 2 1;
+}
+
+.Yorder {
+  margin-top: 15px;
+  height: 600px;
+  padding: 0px; 
+  border: 0px solid #dadada;
+}
+
+.container-checkout {
+
+   padding-right: 0px;
+   padding-left: 0px;
+   height: 100vh;
+}
+
+.checkout-table tr > td:nth-child(2) {
+
+  text-align: right;
+  color: #000000;
+  font-weight: 700;
+}
+
+.form{
+  padding: 0;
+}
+
+
 }

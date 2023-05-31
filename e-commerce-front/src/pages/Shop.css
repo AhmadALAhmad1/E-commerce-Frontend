@@ -30,8 +30,8 @@
 
 .input {
   padding: 10px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: none;
   border: 4px solid #ffd52d;
   border-radius: 50px;
@@ -44,13 +44,13 @@
 }
 .box:hover input {
   width: 500px;
-  background: #3b3640;
+  background: #cbc5d0;
   border-radius: 100px;
 }
 .box i {
   position: absolute;
-  top: 50%;
-  right: 15px;
+  top: 54%;
+  right: 83px;
   transform: translate(-50%, -50%);
   font-size: 26px;
   color: #ffd52d;
@@ -60,6 +60,52 @@
   opacity: 0;
   z-index: -1;
 }
+
+
+@media  screen and (max-width:600px) {
+  .box i {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    color: #ffd52d;
+    transition: 0.2s;
+  }
+}
+
+
+/* search filter /////////////////////////*/
+/* .buttons-filter {
+  padding: 20px 0 40px;
+}
+
+.buttons-filter{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
+.buttons-filter button{
+  transition: all .2s ease-in-out;
+
+border: none;
+background-color: #060606;
+font-weight: 700;
+font-size: 18px;
+cursor: pointer;
+padding: 20px;
+outline: none;
+opacity: 0.4;
+border: none;
+color: #fff;
+  }
+
+.buttons-filter button:hover,
+.buttons-filter button.active {
+  opacity: 1;
+} */
 
 /*///////////////// Products-Card /////////////////*/
 .products {
@@ -80,10 +126,8 @@
     width: 300px;
   }
 
-  .header .navbar .brand {
-    font-size: 2.75rem;
 
-  }
+
 }
 /* </figure>
 <figure class="product-card">

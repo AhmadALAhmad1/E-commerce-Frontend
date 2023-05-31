@@ -14,27 +14,33 @@ import Slider from "../components/Carousel";
 import Carousel from "../components/Carousel";
 import Review from "../components/Review";
 import Caro from "../components/Caro";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  function scrollToSection() {
+    const section = document.getElementById("section2");
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <>
       <div className="container-hero">
         <div className="hero-sec1">
-          <p className="hero-p">Train-smarter Get-stronger</p>
+          <p className="hero-p">Power-Performance-Results</p>
 
           <h1 className="hero-h1">
-            Simple fitness
+            Unleash Your
             <br />
-            experince for
+            Fitness <span className="potential">Potential</span>,
             <br />
-            everyone.
+            Elevate Your <span className="performance">Performance</span>.
           </h1>
-          <p className="hero-p">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum in
-            iure, repellendus.
+          <p className="hero-p hero-p1">
+            Fuel Your Fitness Journey with Premium Quality Supplements Tailored
+            for Optimal Results.
           </p>
           <div className="hero-btn">
-            <button>START </button>
+            <button onClick={scrollToSection}>START</button>
           </div>
         </div>
 
@@ -57,28 +63,25 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container-content-caro">
-    
-          <Caro />
-        </div>
+      <div className="container-content-caro" id="section2">
+        <Caro />
+      </div>
 
       <div className="home-about">
         <div className="about-sec1">
-          <h1 className="about-h1">
-            Feel Healthier and Strong <br />
-            Today
-          </h1>
+          <h1 className="about-h1">Feel Healthier and Strong Today</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
-            architecto consequuntur eveniet ulla Lorem ipsum, dolor sit amet
-            corem.s corem.s corem.s
+            Fuel your fitness journey with our curated range of high-quality
+            supplements. Unlock your true potential and embrace a stronger,
+            healthier you. Join us as we partner in achieving greatness
+            together.
           </p>
           <ul className="ul-about">
             <li>
-              <FcApproval /> High Quality
+              <FcApproval /> High Quality Supplements
             </li>
             <li>
-              <FcApproval /> Fast Delivery{" "}
+              <FcApproval /> Fast and convenient delivery{" "}
             </li>
             <li>
               <FcApproval /> Variety in Products
@@ -86,7 +89,9 @@ const Home = () => {
           </ul>
 
           <div className="home-about-btn">
-            <button>Know More</button>
+            <Link to="/about">
+              <button>Know More</button>
+            </Link>
           </div>
         </div>
 
@@ -97,6 +102,7 @@ const Home = () => {
           <div className="box2"></div>
         </div>
       </div>
+
       <div className="Review-Home">
         <h1 className="review-title">
           What the <br /> World is saying

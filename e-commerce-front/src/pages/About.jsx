@@ -1,5 +1,6 @@
 import React from "react";
-import './About.scss'
+import "./About.scss";
+
 const About = () => {
   return (
     <>
@@ -8,7 +9,7 @@ const About = () => {
           <div className="text-center">
             <h2 className="section-heading text-uppercase">About Us</h2>
             <h3 className="section-subheading text-muted">
-              Lorem ipsum dolor sit amet consectetur.
+              Enriching Your Fitness Lifestyle
             </h3>
           </div>
           <ul className="timeline">
@@ -21,10 +22,11 @@ const About = () => {
                 </div>
                 <div className="timeline-body">
                   <p className="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Sunt ut voluptatum eius sapiente, totam reiciendis
-                    temporibus qui quibusdam, recusandae sit vero unde, sed,
-                    incidunt et ea quo dolore laudantium consectetur!
+                    We are an online supplement store with a focus on providing
+                    high-quality products and a wide variety of options. Our
+                    journey started in 2018 with the aim to offer fitness
+                    enthusiasts access to premium supplements that support their
+                    goals and overall health.
                   </p>
                 </div>
               </div>
@@ -38,10 +40,11 @@ const About = () => {
                 </div>
                 <div className="timeline-body">
                   <p className="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Sunt ut voluptatum eius sapiente, totam reiciendis
-                    temporibus qui quibusdam, recusandae sit vero unde, sed,
-                    incidunt et ea quo dolore laudantium consectetur!
+                    As our customer base grew, we expanded our operations and
+                    evolved into a comprehensive supplement agency. We strive to
+                    provide exceptional service, expert advice, and an extensive
+                    range of products to cater to the diverse needs of our
+                    customers.
                   </p>
                 </div>
               </div>
@@ -55,10 +58,11 @@ const About = () => {
                 </div>
                 <div className="timeline-body">
                   <p className="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Sunt ut voluptatum eius sapiente, totam reiciendis
-                    temporibus qui quibusdam, recusandae sit vero unde, sed,
-                    incidunt et ea quo dolore laudantium consectetur!
+                    In December 2022, we made a significant transition and
+                    expanded our services to become a full-service supplement
+                    store. This allowed us to offer a comprehensive range of
+                    products, including protein powders, creatine, pre-workouts,
+                    fat burners, vitamins, and more, all under one roof.
                   </p>
                 </div>
               </div>
@@ -68,18 +72,19 @@ const About = () => {
               <div className="timeline-panel">
                 <div className="timeline-heading">
                   <h4>May 2023</h4>
-                  <h4 className="subheading">Transition to Full Service</h4>
+                  <h4 className="subheading">Continued Growth and Success</h4>
                 </div>
                 <div className="timeline-body">
                   <p className="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Sunt ut voluptatum eius sapiente, totam reiciendis
-                    temporibus qui quibusdam, recusandae sit vero unde, sed,
-                    incidunt et ea quo dolore laudantium consectetur!
+                    We are committed to our customers' satisfaction and
+                    continuously strive to enhance their shopping experience.
+                    Our dedication to quality, customer service, and a diverse
+                    product selection has helped us grow and become a trusted
+                    destination for fitness enthusiasts seeking top-notch
+                    supplements.
                   </p>
                 </div>
               </div>
-
             </li>
           </ul>
         </div>

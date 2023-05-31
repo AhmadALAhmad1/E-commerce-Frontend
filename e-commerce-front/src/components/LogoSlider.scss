@@ -9,6 +9,10 @@
   --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
 }
 
+.logo{
+  margin-bottom: 10vh;
+}
+
 .marquee {
   color: #eee;
   overflow: hidden;
@@ -25,11 +29,11 @@
 }
 .marquee:before {
   left: 0;
-  background: linear-gradient(to right, #111 0%, transparent 100%);
+  // background: linear-gradient(to right, #111 0%, transparent 100%);
 }
 .marquee:after {
   right: 0;
-  background: linear-gradient(to left, #111 0%, transparent 100%);
+  // background: linear-gradient(to left, #111 0%, transparent 100%);
 }
 .marquee-content {
   list-style: none;
@@ -72,4 +76,8 @@
     --marquee-elements-displayed: 3;
   }
   .marquee:before, .marquee:after { width: 5rem; }
+
+  .logo {
+    margin-top: -16vh;
+  }
 }

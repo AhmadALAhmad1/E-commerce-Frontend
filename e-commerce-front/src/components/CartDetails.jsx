@@ -1,74 +1,35 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./CartDetails.scss";
 import imagetest from "../assets/casein.jpg";
 import { BsCart3 } from "react-icons/bs";
 
 const CartDetails = () => {
+  let { productID } = useParams();
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    getById();
+  }, []);
+
+  const getById = async () => {
+    axios
+      .get(`http://localhost:5000/products/${productID}`)
+      .then((response) => {
+        const product = response.data;
+        setProduct(product);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
-      {/* Overlay image Modal */}
-      <div className="overlay-container">
-        <div className="item-overlay">
-          <button className="item-overlay__btn">
-            <img
-              src="images/icon-close.svg"
-              alt="close image"
-              className="item-overlay__btn-img"
-            />
-          </button>
-          <div className="item-overlay__mainImg">
-            <img
-              src="images/image-product-1.jpg"
-              alt=""
-              className="item-overlay__img"
-            />
-            <button className="item-overlay__btnlft overlay-btn">
-              <img
-                src="images/icon-next.svg"
-                alt="next symbol image"
-                className="item-overlay__btnlft-img overlay-btn__img"
-              />
-            </button>
-            <button className="item-overlay__btnrgt overlay-btn">
-              <img
-                src="images/icon-next.svg"
-                alt="next symbol image"
-                className="item-overlay__btnrgt-img overlay-btn__img"
-              />
-            </button>
-          </div>
-          <div className="overlay-img__btns">
-            <button className="overlay-img__btn" data-img="0">
-              <img
-                src="images/image-product-1-thumbnail.jpg"
-                alt="shoe product image"
-                className="overlay-img__btn-img"
-              />
-            </button>
-            <button className="overlay-img__btn" data-img="1">
-              <img
-                src="images/image-product-2-thumbnail.jpg"
-                alt="shoe product image"
-                className="overlay-img__btn-img"
-              />
-            </button>
-            <button className="overlay-img__btn" data-img="2">
-              <img
-                src="images/image-product-3-thumbnail.jpg"
-                alt="shoe product image"
-                className="overlay-img__btn-img"
-              />
-            </button>
-            <button className="overlay-img__btn" data-img="3">
-              <img
-                src="images/image-product-4-thumbnail.jpg"
-                alt="shoe product image"
-                className="overlay-img__btn-img"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
+
 
       {/* Cart */}
       <div className="head-cart">
@@ -115,9 +76,9 @@ const CartDetails = () => {
           <h1 className="price-main__heading">Fall Limited Edition Sneakers</h1>
           <p className="price-txt">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. A libero
-            incidunt delectus! Quaerat quisquam numqualor  Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eligendi sapiente impedit id suscipit nisi blanditiis alias, inventore possimus quae explicabo, laudantium quia, fugiat vitae culpa repellat. Atque, laboriosam autem. m ex voluptas molestias
-            maiores aut suscipit aspernatur enim voluptatum nostrum dolorem
+            incipit aspernatur enim voluptatum nostrum dolorem
           </p>
+          <p className="size-txt">Size: S</p>
           <div className="price-box">
             <div className="price-box__main">
               <span className="price-box__main-new">$125.00</span>

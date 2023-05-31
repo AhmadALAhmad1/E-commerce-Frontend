@@ -2,8 +2,9 @@ import React, { useRef, useEffect } from "react";
 import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaQuoteRight } from "react-icons/fa";
-import photo from'../assets/profile-pic.jpg'
-
+import avatar1 from '../assets/avatar-1.jpg'
+import avatar2 from '../assets//avatar-2.png'
+import avatar3 from '../assets/avatar-3.png'
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 
@@ -52,9 +53,7 @@ const Review = () => {
             clickable: true, // Make pagination dots clickable
           }}
         >
-     
           <SwiperSlide className="card">
-           
             <div className="card-content">
               <div className="icon-rev">
                 <FaQuoteRight />
@@ -63,18 +62,17 @@ const Review = () => {
               <div className="comment">
                 <h3>Highly Recomnded</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
-                  provident dolorem reiciendis ipsum esse saepe, alias enim
-                 
+                  I had a fantastic experience with their customer service. . I
+                  will definitely be a returning customer.
                 </p>
               </div>
 
               <div className="comment-writer">
                 <div className="image-writer">
-                  <img src={photo} alt="" />
+                  <img src={avatar1} alt="" />
                 </div>
                 <div className="writer">
-                  <h3 className="writer-name">Ahmad Al Ahmad</h3>
+                  <h3 className="writer-name">Rana</h3>
                   <p>Fitness Trainer</p>
                 </div>
               </div>
@@ -88,21 +86,20 @@ const Review = () => {
               </div>
 
               <div className="comment">
-                <h3>Highly Recomnded</h3>
+                <h3>Great Experience</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
-                  provident dolorem reiciendis ipsum esse saepe, alias enim
-                  
+                  I couldn't be happier with the amazing results I've seen after
+                  using their top-notch supplements. The quality is unmatched,
+                  and I've experienced significant improvements.
                 </p>
               </div>
               <div className="comment-writer">
                 <div className="image-writer">
-                <img src={photo} alt="" />
-
+                  <img src={avatar2} alt="" />
                 </div>
                 <div className="writer">
-                  <h3 className="writer-name">Ahmad Al Ahmad</h3>
-                  <p>Fitness Trainer</p>
+                  <h3 className="writer-name">Bob adham</h3>
+                  <p>Developer</p>
                 </div>
               </div>
             </div>
@@ -115,21 +112,20 @@ const Review = () => {
               </div>
 
               <div className="comment">
-                <h3>Highly Recomnded</h3>
+                <h3>High Quality</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
-                  provident dolorem reiciendis ipsum esse saepe, alias enim
-                  
+                  This store has an incredible variety of products.Whether
+                  you're looking to build muscle, lose weight, or improve
+                  endurance, they have it all.
                 </p>
               </div>
               <div className="comment-writer">
                 <div className="image-writer">
-                <img src={photo} alt="" />
-
+                  <img src={avatar3} alt="" />
                 </div>
                 <div className="writer">
-                  <h3 className="writer-name">Ahmad Al Ahmad</h3>
-                  <p>Fitness Trainer</p>
+                  <h3 className="writer-name">John kai</h3>
+                  <p>Trainer</p>
                 </div>
               </div>
             </div>

@@ -1,76 +1,116 @@
-import React from 'react';
-import './Contact.css'
+import React from "react";
+import "./Contact.scss";
 import { BsFacebook } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaInstagram } from "react-icons/fa";
 
+import { FaMobileAlt } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { IoLocationSharp } from "react-icons/io5";
 
 function Contact() {
   return (
     <>
-    <section className="contact_us">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-10 offset-md-1">
-            <div className="contact_inner">
-              <div className="row">
-                <div className="col-md-10">
-                  <div className="contact_form_inner">
-                    <div className="contact_field">
-                      <h3>Contact Us</h3>
-                      <p>Feel free to contact us any time. We will get back to you as soon as we can!.</p>
-                      <input type="text" className="form-control form-group" placeholder="Name" />
-                      <input type="text" className="form-control form-group" placeholder="Email" />
-                      <textarea className="form-control form-group" placeholder="Message"></textarea>
-                      <button className="contact_form_submit">Send</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-2">
-                  <div className="right_conatct_social_icon d-flex align-items-end">
-                    <div className="socil_item_inner d-flex">
-                      <li><a href="#"><i className="fab fa-facebook-square"><BsFacebook/></i></a></li>
-                      <li><a href="#"><i className="fab fa-instagram"><FaInstagram/></i></a></li>
-                      <li><a href="#"><i className="fab fa-twitter"><SlSocialTwitter/></i></a></li>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="contact_info_sec">
-                <h4>Contact Info</h4>
-                <div className="d-flex info_single align-items-center">
-                  <i className="fas fa-headset"></i>
-                  <span>+961 03222111</span>
-                </div>
-                <div className="d-flex info_single align-items-center">
-                  <i className="fas fa-envelope-open-text"></i>
-                  <span>Triple.A@gmail.com</span>
-                </div>
-                <div className="d-flex info_single align-items-center">
-                  <i className="fas fa-map-marked-alt"></i>
-                  <span>100+ Travel partners and 10+ Service city across India, USA, Canada & UAE</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* <div className="contact_form" id="form-contact-id">
+      <h3 className="heading">Contact Us</h3>
+      <form className="contact-form">
+        <div>
+          <label htmlFor="name">Full Name</label><br />
+          <input type="text" id="name" placeholder="Please Enter Your full name" required />
         </div>
-      </div>
-    </section>
+        <div>
+          <label htmlFor="email">Email</label><br />
+          <input type="email" id="email" placeholder="Please Enter Your Email Id" required />
+        </div>
+        <div>
+          <label htmlFor="phone">Phone Number</label><br />
+          <input type="tel" id="phone" placeholder="Please Enter Your Phone Number" />
+        </div>
+        <div>
+          <label htmlFor="message">Message</label><br />
+          <textarea type="text" rows="5" cols="50" id="message" placeholder="Please Enter your message"></textarea>
+        </div>
+        <div className="btn-conatct-div">
+          <button className="btn-contact" type="submit">Submit</button>
+        </div>
+      </form>
+    </div> */}
 
-    <section className="map_sec">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-10 offset-md-1">
-            <div className="map_inner">
-              <h4>Find Us on Google Map</h4>
-              <div className="map_bind">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6476.006255828446!2d35.51139001905863!3d33.89349012697564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f1659d8978b6b%3A0xb6dfec56b0ab56cc!2sBeirut%2C%20Lebanon!5e0!3m2!1sen!2sin!4v1596988408134!5m2!1sen!2sin" width="100%" height="450" frameBorder="0" style={{ border: '0' }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
+      <div className="contact container">
+        <form>
+          <div className="form-contact">
+            <div className="form-txt">
+              <h1>Contact Us</h1>
+              <span>
+                Experience our exceptional customer service and let's create
+                something amazing together!
+              </span>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="title"></div>
+                  <div class="content">
+                    <div class="info">
+                      <i class="fas fa-mobile-alt">
+                        <FaMobileAlt />
+                      </i>
+
+                      <h4 class="d-inline-block">
+                        PHONE :
+                        <br />
+                        <span>+96171378244</span>
+                      </h4>
+                    </div>
+                    <div class="info">
+                      <i class="far fa-envelope">
+                        <HiOutlineMail />
+                      </i>
+                      <h4 class="d-inline-block">
+                        EMAIL :
+                        <br />
+                        <span>Triple-A@gmail.com</span>
+                      </h4>
+                    </div>
+                    <div class="info">
+                      <i class="fas fa-map-marker-alt">
+                        <IoLocationSharp />
+                      </i>
+                      <h4 class="d-inline-block">
+                        ADDRESS :<br />
+                        <span>Lebanon-Beirut</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="form-details">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                id="email-contact"
+                placeholder="Email"
+                required
+              />
+              <textarea
+                name="message"
+                id="message"
+                cols="52"
+                rows="7"
+                placeholder="Message"
+                required
+              ></textarea>
+              <button className="btn-contact-us">SEND MESSAGE</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
-    </section>
     </>
   );
 }
