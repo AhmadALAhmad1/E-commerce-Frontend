@@ -6,9 +6,9 @@ import secureLocalStorage from "react-secure-storage";
 import { BsFacebook } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
-// import secureLocalStorage from "react-secure-storage";
-
-
+//TOAST
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -20,6 +20,20 @@ const Register = () => {
   const errRef = useRef();
   const emailRef = useRef();
   const navigate = useNavigate();
+
+  const successToast = () => {
+    toast.success("Successfully Registered", {
+      position: "top-right",
+      autoClose: 1000,
+      // hideProgressBar: false,
+      // closeOnClick: true,
+      // pauseOnHover: true,
+      // draggable: true,
+      // progress: undefined,
+      // theme: "light",
+    });
+  };
+
   //////////////////////////////////////////////SIGN UP
 
   const fetchRegister = async () => {
@@ -29,7 +43,7 @@ const Register = () => {
         email,
         password,
       });
-      setErrMsg("Successfully registered! You can login now");
+      // setErrMsg("Successfully registered! You can login now");
       setISSubmitted(true);
       setFullName("");
       setEmail("");
@@ -61,32 +75,61 @@ const Register = () => {
 
   //////////////////////////////////////////////////SIGN IN
 
+  // const fetchLogin = async () => {
+  //   axios
+  //     .post("https://triplea.onrender.com/users/login", { email, password })
+  //     .then((res) => {
+  //       secureLocalStorage.setItem("token", res.data.token);
+
+  //       secureLocalStorage.setItem("role", res.data.role);
+  //       secureLocalStorage.setItem("loggedIn", true);
+  //       setErrMsg("you are loggedin ");
+
+  //       setTimeout(() => setErrMsg(""), 3000);
+  //       navigate("/"); // Navigate to the home page
+  //     })
+  //     .catch((err) => {
+  //       if (!err?.response) {
+  //         setErrMsg("No Server Response");
+  //         setTimeout(() => setErrMsg(""), 3000);
+  //       } else if (err.response?.status === 404) {
+  //         setErrMsg("Email not found");
+  //         setTimeout(() => setErrMsg(""), 3000);
+  //       } else if (err.response?.status === 400) {
+  //         setErrMsg("incorrect password");
+  //         setTimeout(() => setErrMsg(""), 3000);
+  //       }
+  //       // errRef.current.focus();
+  //     });
+  // };
+
   const fetchLogin = async () => {
-    axios
-      .post("https://triplea.onrender.com/users/login", { email, password })
-      .then((res) => {
-        secureLocalStorage.setItem("token", res.data.token);
-
-        secureLocalStorage.setItem("role", res.data.role);
-        secureLocalStorage.setItem("loggedIn", true);
-        setErrMsg("you are loggedin ");
-
-        setTimeout(() => setErrMsg(""), 3000);
-        navigate("/"); // Navigate to the home page
-      })
-      .catch((err) => {
-        if (!err?.response) {
-          setErrMsg("No Server Response");
-          setTimeout(() => setErrMsg(""), 3000);
-        } else if (err.response?.status === 404) {
-          setErrMsg("Email not found");
-          setTimeout(() => setErrMsg(""), 3000);
-        } else if (err.response?.status === 400) {
-          setErrMsg("incorrect password");
-          setTimeout(() => setErrMsg(""), 3000);
-        }
-        // errRef.current.focus();
+    try {
+      const res = await axios.post("https://triplea.onrender.com/users/login", {
+        email,
+        password,
       });
+      secureLocalStorage.setItem("token", res.data.token);
+      secureLocalStorage.setItem("role", res.data.role);
+      secureLocalStorage.setItem("loggedIn", true);
+      setErrMsg("You are logged in");
+      setTimeout(() => setErrMsg(""), 3000);
+      successToast(); 
+      navigate("/"); // Navigate to the home page
+    // Show the toastify success message
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+        setTimeout(() => setErrMsg(""), 3000);
+      } else if (err.response?.status === 404) {
+        setErrMsg("Email not found");
+        setTimeout(() => setErrMsg(""), 3000);
+      } else if (err.response?.status === 400) {
+        setErrMsg("Incorrect password");
+        setTimeout(() => setErrMsg(""), 3000);
+      }
+      // errRef.current.focus();
+    }
   };
 
   const handleSubmitSign = async (e) => {
@@ -94,166 +137,186 @@ const Register = () => {
     await fetchLogin({ email, password });
   };
 
+  useEffect(() => {
+    if (isSubmitted) {
+      handleSignIn(); // Automatically switch to sign-in mode
+    }
+  }, [isSubmitted]);
+
+  
   return (
-    <body>
-      <div className="container-login">
-        <div className="forms-container">
-          <div className="signin-signup">
-            <form
-              action="#"
-              className="sign-in-form"
-              onSubmit={handleSubmitSign}
+    <div className="container-login">
+      <div className="forms-container">
+        <div className="signin-signup">
+          <form action="#" className="sign-in-form" onSubmit={handleSubmitSign}>
+            {errMsg && <p className="error-message">{errMsg}</p>}
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
             >
-              <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-              >
-                {errMsg}
-              </p>
-              <h2 className="title">Sign in</h2>
-              <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
-              </div>
-              <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                ></input>
-              </div>
-              <input type="submit" value="Login" className="btn-login solid" />
-              <p className="social-text">Or Sign in with social platforms</p>
-              <div className="social-media">
-                <a href="#" className="social-icon">
-                  <i className="fab fa-facebook-f">
-                    <BsFacebook />
-                  </i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-twitter">
-                    <SlSocialTwitter />
-                  </i>
-                </a>
-
-                <a href="#" className="social-icon">
-                  <i className="fab fa-linkedin-in">
-                    <FaLinkedinIn />
-                  </i>
-                </a>
-              </div>
-
-              {/* ///////////////////////sign-UP/////////////////////////// */}
-            </form>
-            <form action="#" className="sign-up-form" onSubmit={handleSubmit}>
-              <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-              >
-                {errMsg}
-              </p>
-              {isSubmitted && (
-                <div className="Submitted-Successfully">
-                  Submitted Successfully
-                </div>
-              )}
-              <h2 className="title">Sign up</h2>
-              <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  placeholder="Full Name"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                ></input>
-              </div>
-              <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  placeholder="Email"
-                  value={email}
-                  ref={emailRef}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
-              </div>
-              <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></input>
-              </div>
-              <input type="submit" className="btn-login" value="Sign up" />
-              <p className="social-text">Or Sign up with social platforms</p>
-              <div className="social-media">
-                <a href="#" className="social-icon">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-google"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div className="panels-container">
-          <div className="panel left-panel">
-            <div className="content">
-              <h3>New here ?</h3>
-              <p>
-                Transform your fitness journey with our premium supplements and
-                reach your peak performance!
-              </p>
-              <button
-                className="btn-login transparent"
-                id="sign-up-btn"
-                onClick={handleSignUp}
-              >
-                Sign up
-              </button>
+              {errMsg}
+            </p>
+            <h2 className="title">Sign in</h2>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input
+                type="text"
+                autoComplete="off"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
             </div>
-            <img src="img/log.svg" className="image-login" alt="" />
-          </div>
-          <div className="panel right-panel">
-            <div className="content">
-              <h3>One of us ?</h3>
-              <p>
-                Elevate your fitness game with our high-quality supplements,
-                designed to fuel your success and maximize your results!
-              </p>
-              <button
-                className="btn-login transparent"
-                id="sign-in-btn"
-                onClick={handleSignIn}
-              >
-                Sign in
-              </button>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
             </div>
-            <img src="img/register.svg" className="image-login" alt="" />
-          </div>
+
+            <button
+              type="submit"
+              value="Login"
+              className="btn-login solid"
+            ><ToastContainer /> </button>
+            <p className="social-text">Or Sign in with social platforms</p>
+            <div className="social-media">
+              <a href="#" className="social-icon">
+                <i className="fab fa-facebook-f">
+                  <BsFacebook />
+                </i>
+              </a>
+              <a href="#" className="social-icon">
+                <i className="fab fa-twitter">
+                  <SlSocialTwitter />
+                </i>
+              </a>
+
+              <a href="#" className="social-icon">
+                <i className="fab fa-linkedin-in">
+                  <FaLinkedinIn />
+                </i>
+              </a>
+            </div>
+          </form>
+
+          {/* ///////////////////////sign-UP/////////////////////////// */}
+
+          <form action="#" className="sign-up-form" onSubmit={handleSubmit}>
+            {errMsg && <p className="error-message">{errMsg}</p>}
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+            {isSubmitted && (
+              <div className="Submitted-Successfully">
+                Successfully registered! You can login now
+              </div>
+            )}
+            <h2 className="title">Sign up</h2>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input
+                type="text"
+                autoComplete="off"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              ></input>
+            </div>
+            <div className="input-field">
+              <i className="fas fa-envelope"></i>
+              <input
+                type="text"
+                autoComplete="off"
+                placeholder="Email"
+                value={email}
+                ref={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <input type="submit" className="btn-login" value="Sign up" />
+            <p className="social-text">Or Sign up with social platforms</p>
+            <div className="social-media">
+              <a href="#" className="social-icon">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" className="social-icon">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="#" className="social-icon">
+                <i className="fab fa-google"></i>
+              </a>
+              <a href="#" className="social-icon">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
         </div>
       </div>
-    </body>
+
+      <div className="panels-container">
+        <div className="panel left-panel">
+          <div className="content">
+            <h3>New here ?</h3>
+            <p>
+              Transform your fitness journey with our premium supplements and
+              reach your peak performance!
+            </p>
+            <button
+              className="btn-login transparent"
+              id="sign-up-btn"
+              onClick={handleSignUp}
+            >
+              Sign up
+            </button>
+          </div>
+          <img
+            // src="img/log.svg"
+            className="image-login"
+            alt=""
+          />
+        </div>
+        <div className="panel right-panel">
+          <div className="content">
+            <h3>One of us ?</h3>
+            <p>
+              Elevate your fitness game with our high-quality supplements,
+              designed to fuel your success and maximize your results!
+            </p>
+            <button
+              className="btn-login transparent"
+              id="sign-in-btn"
+              onClick={handleSignIn}
+            >
+              Sign in
+            </button>
+
+            
+          </div>
+          <img
+            // src="img/register.svg"
+
+            className="image-login"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

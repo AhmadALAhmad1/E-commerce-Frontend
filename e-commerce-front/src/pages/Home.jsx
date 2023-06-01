@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import "./Home.scss";
 // import image from "../assets/image-protein.png";
@@ -16,10 +16,28 @@ import Review from "../components/Review";
 import Caro from "../components/Caro";
 import { Link } from "react-router-dom";
 
+
+import { ToastContainer, toast,Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loader from "../components/Loader";
+
 const Home = () => {
+
+const [loading,setLoading]=useState(true)
+
   function scrollToSection() {
     const section = document.getElementById("section2");
     section.scrollIntoView({ behavior: "smooth" });
+  }
+
+  useEffect(()=>{
+  setTimeout(()=>{
+    setLoading(false)
+  },3000)
+  },[])
+
+  if(loading){
+    return <Loader/>
   }
 
   return (
@@ -113,6 +131,8 @@ const Home = () => {
       <div className="logo">
         <LogoSlider />
       </div>
+
+
     </>
   );
 };

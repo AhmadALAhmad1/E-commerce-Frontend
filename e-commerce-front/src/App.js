@@ -9,12 +9,16 @@ import CartDetails from "./components/CartDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Register from "./pages/Login/Register";
-
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
   return (
+    <>
+    <ToastContainer/>
+
     <div className="App">
+
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -31,6 +35,7 @@ function App() {
         <Footer />
       </BrowserRouter>
     </div>
+    </>
   );
 }
 

@@ -23,9 +23,12 @@ function Nav() {
   return (
     <header className="header">
       <nav className="navbar">
-        <div className="cart-phone">
-          <AiOutlineShoppingCart />
-        </div>
+        {/* <div className="cart-phone">
+  <Link to="/cart"  className="cart-link">
+    <AiOutlineShoppingCart className="cart-icon" />
+  </Link>
+</div> */}
+
         <a className="brand" href="/">
           Triple A
         </a>
@@ -65,9 +68,15 @@ function Nav() {
         </div>
 
         <div className="icons-nav">
-          
-          <div className="cart">
-            <Link to="/cart"><AiOutlineShoppingCart /></Link>
+          {/*  <div className="cart">
+            <Link to="/cart">
+              <AiOutlineShoppingCart />
+            </Link>
+          </div> */}
+          <div className="cart-phone">
+            <Link to="/cart" className="cart-link">
+              <AiOutlineShoppingCart className="cart-icon" />
+            </Link>
           </div>
 
           <div className="user" onClick={toggleUserDropdown}>

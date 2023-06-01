@@ -4,17 +4,35 @@ $color-light: #f1f5f8;
 $color-red: #d32f2f;
 $color-blue: #148cb8;
 
+
+// .cart-phone{
+//   display: inline;
+//   position: absolute;
+//   left: 16px;
+//   top: 6px;
+//   font-size: 30px;
+
+// }
+
+
 .navbar{
   background-color:#060606;
 }
 
-.icons-nav .cart a{
-  color:white;
+
+
+.cart-link {
+  text-decoration: none;
 }
 
-.icons-nav .cart a:hover{
-color: orange;
+.cart-icon {
+  color: rgb(255, 255, 255); /* Apply your desired color here */
+  font-size: 30px; /* Customize the size of the icon */
 }
+
+
+
+
 
 .icons-nav .user:hover
 {
@@ -34,7 +52,6 @@ background-color: white;
 
 
 .icons-nav {
-  position: relative;
   cursor: pointer;
 }
 
@@ -81,10 +98,10 @@ background-color: white;
     gap: 20px;
     font-size: 25px;
 }
-.cart-phone{
-  display: none;
+// .cart-phone{
+//   display: none;
 
-}
+// }
 
 a,ul{
   text-decoration: none;
@@ -272,16 +289,17 @@ margin-left: 0px;
       }
       
 
-      .icons-nav{
+      .icons-nav .user{
         display: none;
       }
 
       .cart-phone{
         display: inline;
         position: absolute;
-        left: 10px;
+        left: 16px;
         top: 6px;
         font-size: 30px;
+        color: red;
       
       }
 
