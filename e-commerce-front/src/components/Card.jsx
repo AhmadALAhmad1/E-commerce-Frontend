@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import "./Card.css";
 import secureLocalStorage from "react-secure-storage";
 //TOAST
@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import {BsSearch} from 'react-icons/bs'
 const Card = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [name, setName] = useState("");
@@ -17,6 +19,8 @@ const Card = () => {
   const [isProductDisabled, setIsProductDisabled] = useState(false);
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState("");
+
+
 
   const successToast = () => {
     toast.success("Product added to Cart", {
@@ -52,7 +56,11 @@ const Card = () => {
     const token = secureLocalStorage.getItem("token");
 
     if (!token) {
-      navigate("/register");
+      navigate("/register", { 
+        state: {
+          previousUrl: location.pathname,
+        }
+      });
    
     }
 
@@ -123,7 +131,11 @@ const Card = () => {
     if (!token) {
       failToast();
 
-      navigate("/register");
+      navigate("/register" , { 
+        state: {
+          previousUrl: location.pathname,
+        }
+      });
       return;
     }
     successToast(); 
@@ -251,8 +263,8 @@ const Card = () => {
                       Add to Cart
                     </span>
 
-                    {/* <Link to={`/shop/${product._id}`}>
-                      <span className="span-2">More Details</span></Link> */}
+                     <Link to={`/shop/${product._id}`}>
+                      <span className="span-2">More Details</span></Link> 
                   </div>
                 </div>
               </a>

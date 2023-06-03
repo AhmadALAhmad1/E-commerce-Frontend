@@ -12,9 +12,9 @@ function Caro() {
     getAllProducts();
   }, []);
 
-  const navigateToShop = () => {
-    navigate("/shop");
-  };
+  // const navigateToShop = () => {
+  //   navigate("/shop");
+  // };
 
   useEffect(() => {
     if (Products.length > 0) {
@@ -71,7 +71,7 @@ function Caro() {
                   className="img-marq"
                   src={product.image}
                   alt=""
-                  onClick={navigateToShop}
+                  onClick={() => navigate(`/shop/${product._id}`)}
                 />
                 <h1 className="hello">{product.name}</h1>
                 <p className="hello">{product.price}$</p>

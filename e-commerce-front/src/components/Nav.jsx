@@ -1,12 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Nav.scss";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
 
 function Nav() {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [user, setUser] = useState({});
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    try {
+      const token = secureLocalStorage.getItem("token");
+    
+
+      const tokenPayload = token.split(".")[1];
+      const decodedPayload = JSON.parse(atob(tokenPayload));
+      const userID = decodedPayload.id;
+console.log("1",userID)
+      ///////////////////////Get User BY ID///////////////
+      const getById = async () => {
+        try {
+          const { data } = await axios.get(
+            `https://triplea.onrender.com/users/me/${userID}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setUser(data);
+          console.log("3", data.fullName);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      
+
+      getById();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  ////////////////////////////////////////////
+  function handleBuyClick() {
+    navigate("/register", {
+      state: {
+        previousUrl: location.pathname,
+      },
+    });
+  }
 
   const toggleBurgerMenu = () => {
     setBurgerMenuOpen(!isBurgerMenuOpen);
@@ -23,7 +72,6 @@ function Nav() {
   const closeUserDropdown = () => {
     setUserDropdownOpen(false);
   };
-
   return (
     <header className="header">
       <nav className="navbar">
@@ -72,11 +120,7 @@ function Nav() {
         </div>
 
         <div className="icons-nav">
-          {/* <div className="cart">
-            <Link to="/cart">
-              <AiOutlineShoppingCart />
-            </Link>
-          </div> */}
+     
           <div className="cart-phone">
             <Link to="/cart" className="cart-link">
               <AiOutlineShoppingCart className="cart-icon" />
@@ -88,8 +132,15 @@ function Nav() {
             {isUserDropdownOpen && (
               <div className="user-dropdown" onClick={closeUserDropdown}>
                 <ul className="dropdown-menu">
+
+                  {user && <li className="span-nav-user">Hello <span className="user-name">{user.fullName}</span></li>}
                   <li>
-                    <Link to="/register">Login</Link>
+                    <span
+                      className="span-nav-login"
+                      onClick={() => handleBuyClick()}
+                    >
+                      Login
+                    </span>
                   </li>
                   <li>
                     <Link to="/profile">Profile</Link>

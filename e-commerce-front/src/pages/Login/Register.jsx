@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./Register.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { BsFacebook } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
@@ -18,8 +18,11 @@ const Register = () => {
   const [isSubmitted, setISSubmitted] = useState(false);
 
   const errRef = useRef();
-  const emailRef = useRef();
+  const emailRef = useRef();  
+
   const navigate = useNavigate();
+  const location = useLocation();
+
 
   const successToast = () => {
     toast.success("Successfully Logged In", {
@@ -46,7 +49,6 @@ const Register = () => {
       theme: "light",
     });
   };
-
 
   //////////////////////////////////////////////SIGN UP
 
@@ -129,9 +131,9 @@ const Register = () => {
       secureLocalStorage.setItem("loggedIn", true);
       setErrMsg("You are logged in");
       setTimeout(() => setErrMsg(""), 3000);
-      successToast(); 
-      navigate("/"); // Navigate to the home page
-    // Show the toastify success message
+      successToast();
+      navigate(location.state.previousUrl); // Navigate to the home page
+      // Show the toastify success message
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -157,7 +159,6 @@ const Register = () => {
       handleSignIn(); // Automatically switch to sign-in mode
     }
   }, [isSubmitted]);
-
 
   return (
     <div className="container-login">
@@ -191,11 +192,9 @@ const Register = () => {
               ></input>
             </div>
 
-            <button
-              type="submit"
-              value="Login"
-              className="btn-login solid"
-            >Sign In </button>
+            <button type="submit" value="Login" className="btn-login solid">
+              Sign In{" "}
+            </button>
 
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
@@ -265,11 +264,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
-            <input 
-            type="submit"
-             className="btn-login" 
-             value="Sign up" 
-             />
+            <input type="submit" className="btn-login" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -300,7 +295,6 @@ const Register = () => {
             <button
               className="btn-login transparent"
               id="sign-up-btn"
-              
               onClick={handleSignUp}
             >
               Sign up
@@ -326,8 +320,6 @@ const Register = () => {
             >
               Sign in
             </button>
-
-            
           </div>
           <img
             // src="img/register.svg"
