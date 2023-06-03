@@ -1,35 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Shop.css";
 import { BsSearch } from "react-icons/bs";
 import Card from "../components/Card";
-import { useState, useEffect } from "react";
 import axios from "axios";
-
-
+import Loader from "../components/Loader";
 
 const Shop = () => {
-  const [Products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const getAllProducts = async () => {
+      try {
+        const { data } = await axios.get("https://triplea.onrender.com/products/");
+        setProducts(data.data);
+        console.log(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    
     getAllProducts();
   }, []);
-
-  ///////////////////////////////////GET ALL///////////////////////////
-  const getAllProducts = async () => {
-    try {
-      const { data } = await axios.get("https://triplea.onrender.com/products/");
-      setProducts(data.data);
-      console.log(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (Products.length === 0) {
-    return null; // Return null or a loading spinner while fetching the products
-  }
-  /////////////////////////////////////////////////////////////////////////
-
 
   return (
     <>
@@ -37,7 +34,7 @@ const Shop = () => {
         <h1>
           Our<span className="span-h1"> Products</span>{" "}
         </h1>
-
+{/* 
         <div className="search-bar">
           <div className="box">
             <form name="search">
@@ -56,11 +53,9 @@ const Shop = () => {
               <BsSearch />
             </i>
           </div>
-        </div>
+        </div> */}
 
-        <div className="products">
-          <Card />
-        </div>
+        {loading ? <Loader /> : <Card products={products} />}
       </div>
     </>
   );

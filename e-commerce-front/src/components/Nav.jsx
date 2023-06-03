@@ -20,14 +20,18 @@ function Nav() {
     setBurgerMenuOpen(false);
   };
 
+  const closeUserDropdown = () => {
+    setUserDropdownOpen(false);
+  };
+
   return (
     <header className="header">
       <nav className="navbar">
         {/* <div className="cart-phone">
-  <Link to="/cart"  className="cart-link">
-    <AiOutlineShoppingCart className="cart-icon" />
-  </Link>
-</div> */}
+          <Link to="/cart" className="cart-link">
+            <AiOutlineShoppingCart className="cart-icon" />
+          </Link>
+        </div> */}
 
         <a className="brand" href="/">
           Triple A
@@ -59,7 +63,7 @@ function Nav() {
             <li className="menu-item" onClick={closeMenu}>
               <Link to="/contact">Contact</Link>
             </li>
-            {isBurgerMenuOpen && ( // Render the Login menu item only when the burger menu is open
+            {isBurgerMenuOpen && (
               <li className="menu-item" onClick={closeMenu}>
                 <Link to="/register">Login</Link>
               </li>
@@ -68,7 +72,7 @@ function Nav() {
         </div>
 
         <div className="icons-nav">
-          {/*  <div className="cart">
+          {/* <div className="cart">
             <Link to="/cart">
               <AiOutlineShoppingCart />
             </Link>
@@ -82,13 +86,13 @@ function Nav() {
           <div className="user" onClick={toggleUserDropdown}>
             <BiUserCircle />
             {isUserDropdownOpen && (
-              <div className="user-dropdown">
+              <div className="user-dropdown" onClick={closeUserDropdown}>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/register">Register</Link>
+                    <Link to="/register">Login</Link>
                   </li>
                   <li>
-                    <Link to="/register">Login</Link>
+                    <Link to="/profile">Profile</Link>
                   </li>
                 </ul>
               </div>

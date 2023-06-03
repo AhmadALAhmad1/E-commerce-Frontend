@@ -49,6 +49,7 @@ background-color: orange;
 }
 .required{
   color: red;
+ 
 }
 .form-checkout label, 
 .checkout-table{
@@ -66,7 +67,8 @@ background-color: orange;
   padding: 5px 10px;
   margin-bottom: 10px;
   border: 1px solid #dadada;
-  color: #888;
+  color: #000000;
+  font-weight: 500;
 }
 
 .Yorder{
@@ -117,9 +119,9 @@ background-color: orange;
   background: #428a7d;
 }
 
-.form-checkout span{
-color: black;
-}
+// .form-checkout span{
+// color: black;
+// }
 
 @media screen and (max-width: 768px) {
 

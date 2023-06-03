@@ -34,10 +34,12 @@ $color-blue: #148cb8;
 
 
 
-.icons-nav .user:hover
-{
-  color: orange;
-}
+// .icons-nav .user:hover
+// {
+//   color: orange;
+// }
+
+
 
 
 .nav-toggle .span{
@@ -57,13 +59,12 @@ background-color: white;
 
 .user-dropdown {
   position: absolute;
-  top: 100%;
-  left: 55px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+color: $color-black;
+  background-color: $color-white;
   border-radius: 5px;
   padding: 4px 0;
   width: 100px;
+  
   
 }
 
@@ -74,13 +75,15 @@ background-color: white;
 }
 
 .dropdown-menu li {
-  padding: 4px 10px;
+  padding: 6px 10px;
+  color:$color-black;
+
 
 }
 
 .dropdown-menu li a {
+  color: $color-black;
   display: block;
-  color: #000;
   font-weight: 700;
   text-decoration: none;
   transition: 0.1s ease;
@@ -88,8 +91,10 @@ background-color: white;
 }
 
 .dropdown-menu li a:hover {
-  background-color: #f0f0f0;
-}
+  background-color: orange;
+  border-radius: 20px;
+
+  }
 
 
 .icons-nav{

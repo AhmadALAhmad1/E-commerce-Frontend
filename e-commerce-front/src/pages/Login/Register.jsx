@@ -22,17 +22,31 @@ const Register = () => {
   const navigate = useNavigate();
 
   const successToast = () => {
-    toast.success("Successfully Registered", {
+    toast.success("Successfully Logged In", {
       position: "top-right",
-      autoClose: 1000,
-      // hideProgressBar: false,
-      // closeOnClick: true,
-      // pauseOnHover: true,
-      // draggable: true,
-      // progress: undefined,
-      // theme: "light",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   };
+
+  const successToastRegister = () => {
+    toast.success("Successfully Registered", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
 
   //////////////////////////////////////////////SIGN UP
 
@@ -49,6 +63,7 @@ const Register = () => {
       setEmail("");
       setPassword("");
       setTimeout(() => setErrMsg(""), 3000);
+      successToastRegister();
 
       //  navigate("/login");
     } catch (error) {
@@ -143,7 +158,7 @@ const Register = () => {
     }
   }, [isSubmitted]);
 
-  
+
   return (
     <div className="container-login">
       <div className="forms-container">
@@ -180,7 +195,8 @@ const Register = () => {
               type="submit"
               value="Login"
               className="btn-login solid"
-            ><ToastContainer /> </button>
+            >Sign In </button>
+
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -249,7 +265,11 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
-            <input type="submit" className="btn-login" value="Sign up" />
+            <input 
+            type="submit"
+             className="btn-login" 
+             value="Sign up" 
+             />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -280,6 +300,7 @@ const Register = () => {
             <button
               className="btn-login transparent"
               id="sign-up-btn"
+              
               onClick={handleSignUp}
             >
               Sign up

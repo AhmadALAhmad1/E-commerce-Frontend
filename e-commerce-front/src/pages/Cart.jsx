@@ -32,9 +32,9 @@ const HandleSubmitOrder = () => {
     const token = secureLocalStorage.getItem("token");
     if (!token) {
       window.location.href = "/register";
-    }
+    }}
 
-
+  
   //   try {
   //     const response = await axios.post(
   //       "https://triplea.onrender.com/orders",
@@ -56,15 +56,15 @@ const HandleSubmitOrder = () => {
   //   } finally {
   //     setIsLoading(false);
   //   }
-  // };
+  //};
 
-  // const handleDelete = (id) => {
-  //   setCart((cart) => cart.filter((i) => i.product_id !== id));
+  const handleDelete = (id) => {
+    setCart((cart) => cart.filter((i) => i.product_id !== id));
     
-  //   localStorage.setItem("cart", JSON.stringify(cart));
-  //     window.location.reload();
-  // };
-  }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+
   const updateQuantity = (itemId, newQuantity) => {
     const updatedCart = cart.map((item) => {
       if (item.product_id === itemId) {
@@ -142,7 +142,7 @@ const HandleSubmitOrder = () => {
                       <td>
                         <AiFillDelete
                           className='delete-icon-row'
-                          // onClick={() => handleDelete(item.product_id)}
+                          onClick={() => handleDelete(item.product_id)}
                         />
                       </td>
                     </tr>

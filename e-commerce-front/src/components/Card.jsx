@@ -1,54 +1,83 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Card.css";
 import secureLocalStorage from "react-secure-storage";
-
-
+//TOAST
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {BsSearch} from 'react-icons/bs'
 const Card = () => {
   const navigate = useNavigate();
-
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const [name, setName] = useState("");
   const [price, setprice] = useState("");
   const [quantity, setQuantity] = useState(1);
-
   const [isProductDisabled, setIsProductDisabled] = useState(false);
-
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState("");
 
+  const successToast = () => {
+    toast.success("Product added to Cart", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+
+  const failToast = () => {
+    toast.error("Please Login First!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+
+
   function handleBuyClick() {
+    
     const token = secureLocalStorage.getItem("token");
-  
+
     if (!token) {
       navigate("/register");
-    } else {
-      navigate("/about");
+   
     }
+
   }
- 
-  
+
   useEffect(() => {
     getAllProducts();
   }, []);
   ////////////////////////////////loader//////////////////////////
-  useEffect(() => {
-    // Preloader after 3 seconds: adding "none" class and removing preloader
-    setTimeout(function () {
-      const loadingElement = document.getElementById("loading");
-      if (loadingElement) {
-        loadingElement.classList.add("none");
-      }
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   // Preloader after 3 seconds: adding "none" class and removing preloader
+  //   setTimeout(function () {
+  //     const loadingElement = document.getElementById("loading");
+  //     if (loadingElement) {
+  //       loadingElement.classList.add("none");
+  //     }
+  //   }, 3000);
+  // }, []);
 
   //////////////////////////////////// GET ALL  /////////////////////////////////////////////
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("https://triplea.onrender.com/products/");
+      const { data } = await axios.get(
+        "https://triplea.onrender.com/products/",
+      );
       setProducts(data.data);
       setFilteredProducts(data.data); // Initialize filtered products with all products
     } catch (error) {
@@ -73,18 +102,32 @@ const Card = () => {
   }
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  
-  const addToCart = (product) => {
 
-    const token = secureLocalStorage.getItem("token");
+  const handleSearch = (event) => {
+    event.preventDefault(); // Prevent form submission
+    const query = event.target.value;
+    setName(query);
   
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+  
+  /////////////////////////////////////////////////////////
+
+  const addToCart = (event, product) => {
+    event.preventDefault(); 
+    const token = secureLocalStorage.getItem("token");
+
     if (!token) {
+      failToast();
+
       navigate("/register");
       return;
     }
+    successToast(); 
 
-    
-    
     const cartItem = {
       product_id: product._id,
       image: product.image,
@@ -116,6 +159,7 @@ const Card = () => {
 
     if (!cartItemExists) {
       existingCartItems.push(cartItem);
+
     }
 
     localStorage.setItem("cart", JSON.stringify(existingCartItems));
@@ -125,20 +169,37 @@ const Card = () => {
 
   return (
     <>
-      <div className="spinner-wrapper" id="loading">
-        <div className="spinner"></div>
-        <div className="spinner">
-          <div className="rect1"></div>
-          <div className="rect2"></div>
-          <div className="rect3"></div>
-          <div className="rect4"></div>
-          <div className="rect5"></div>
+
+<div className="search-bar">
+          <div className="box">
+            <form name="search">
+            <input
+  type="text"
+  className="input"
+  name="txt"
+  value={name}
+  onChange={handleSearch}
+  onKeyPress={(event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch(event);
+    }
+  }}
+  onMouseOut={(e) => {
+    e.target.value = "";
+    e.target.blur();
+  }}
+/>
+            </form>
+            <i className="fas fa-search">
+              {" "}
+              <BsSearch />
+            </i>
+          </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
+
+
+
       <div class="buttons-filter">
         <button class="button-all" onClick={() => filterProducts("all")}>
           All
@@ -181,10 +242,11 @@ const Card = () => {
                   <div className="product-item-title">{product.name}</div>
                   <div className="product-item-price">{product.price}$</div>
                   <div className="button-pill">
-                    <span className="span-1"
-                    onSubmit={() => handleBuyClick()}
-
-                    onClick={() => addToCart(product)}
+                    <span
+                      className="span-1"
+                      onSubmit={() => handleBuyClick()}
+                      // onClick={() => addToCart(product)}
+                      onClick={(event) => addToCart(event, product)}
                     >
                       Add to Cart
                     </span>
@@ -212,6 +274,8 @@ const Card = () => {
       <br />
       <br />
       <br />
+                      <ToastContainer />
+
     </>
   );
 };

@@ -1,43 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.scss";
-import { BsFacebook } from "react-icons/bs";
-import { SlSocialTwitter } from "react-icons/sl";
-import { FaInstagram } from "react-icons/fa";
-
 import { FaMobileAlt } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoLocationSharp } from "react-icons/io5";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const successToast = () => {
+    toast.success("Message sent successfully!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Perform your custom validation here
+    if (!name || !email || !message) {
+      alert("Please fill in all the fields.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    // Form submission logic goes here
+    // You can make an API request or perform any other necessary actions
+
+    setIsFormSubmitted(true);
+    successToast();
+    setName("");
+    setEmail("");
+    setMessage("");
+  };
+
   return (
     <>
-      {/* <div className="contact_form" id="form-contact-id">
-      <h3 className="heading">Contact Us</h3>
-      <form className="contact-form">
-        <div>
-          <label htmlFor="name">Full Name</label><br />
-          <input type="text" id="name" placeholder="Please Enter Your full name" required />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label><br />
-          <input type="email" id="email" placeholder="Please Enter Your Email Id" required />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone Number</label><br />
-          <input type="tel" id="phone" placeholder="Please Enter Your Phone Number" />
-        </div>
-        <div>
-          <label htmlFor="message">Message</label><br />
-          <textarea type="text" rows="5" cols="50" id="message" placeholder="Please Enter your message"></textarea>
-        </div>
-        <div className="btn-conatct-div">
-          <button className="btn-contact" type="submit">Submit</button>
-        </div>
-      </form>
-    </div> */}
-
       <div className="contact container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-contact">
             <div className="form-txt">
               <h1>Contact Us</h1>
@@ -53,7 +81,6 @@ function Contact() {
                       <i class="fas fa-mobile-alt">
                         <FaMobileAlt />
                       </i>
-
                       <h4 class="d-inline-block">
                         PHONE :
                         <br />
@@ -89,6 +116,8 @@ function Contact() {
                 name="name"
                 id="name"
                 placeholder="Name"
+                value={name}
+                onChange={handleNameChange}
                 required
               />
               <input
@@ -96,6 +125,8 @@ function Contact() {
                 name="email"
                 id="email-contact"
                 placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
                 required
               />
               <textarea
@@ -104,13 +135,23 @@ function Contact() {
                 cols="52"
                 rows="7"
                 placeholder="Message"
+                value={message}
+                onChange={handleMessageChange}
                 required
               ></textarea>
-              <button className="btn-contact-us">SEND MESSAGE</button>
+              <button
+                mailto="ahmadd.l.ahmadd1998@gmail.com"
+                className="btn-contact-us"
+                type="submit"
+              >
+                SEND MESSAGE
+              </button>
+         
             </div>
           </div>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }
