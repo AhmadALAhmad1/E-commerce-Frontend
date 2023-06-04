@@ -15,27 +15,27 @@ import Profile from "./pages/Profile";
 function App() {
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
 
-    <div className="App">
+      <div className="App">
 
-      <BrowserRouter>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="shop/:productID" element={<CartDetails />} />
-          <Route path="shop/:productID" element={<CartDetails />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/Profile" element={<Profile />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
+        <BrowserRouter>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="shop/:productID" element={<CartDetails />} />
+            <Route path="shop/:productID" element={<CartDetails />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </div>
     </>
   );
 }

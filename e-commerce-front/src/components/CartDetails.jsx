@@ -10,6 +10,8 @@ import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
+
 
 const CartDetails = () => {
   const [product, setProduct] = useState({});
@@ -26,6 +28,7 @@ const CartDetails = () => {
   const [isProductDisabled, setIsProductDisabled] = useState(false);
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const successToast = () => {
     toast.success("Product added to Cart", {
@@ -65,6 +68,9 @@ const CartDetails = () => {
   useEffect(() => {
     getById();
   }, []);
+
+
+  
 
   const getById = async () => {
     try {
@@ -143,6 +149,17 @@ const CartDetails = () => {
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
+
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false)
+    },2000)
+    },[])
+  
+    if(loading){
+      return <Loader/>
+    }
 
   return (
     <>

@@ -5,6 +5,8 @@ import { BiUserCircle } from "react-icons/bi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Nav() {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
@@ -14,15 +16,43 @@ function Nav() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const successToast = () => {
+    toast.success("You logged Out !", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const HandleLoginNavigation = () => {
+    navigate("/register", {
+      state: {
+        previousUrl: location.pathname,
+      },
+    });
+  };
+
+  const handleLogout = () => {
+    window.localStorage.clear();
+    successToast();
+    setTimeout(() => {
+      window.location.reload();
+      navigate("/");
+    }, 2000); // Reload after 3 seconds (adjust the duration as needed)
+  };
+
   useEffect(() => {
     try {
       const token = secureLocalStorage.getItem("token");
-    
 
       const tokenPayload = token.split(".")[1];
       const decodedPayload = JSON.parse(atob(tokenPayload));
       const userID = decodedPayload.id;
-console.log("1",userID)
       ///////////////////////Get User BY ID///////////////
       const getById = async () => {
         try {
@@ -32,15 +62,13 @@ console.log("1",userID)
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            }
+            },
           );
           setUser(data);
-          console.log("3", data.fullName);
         } catch (error) {
           console.log(error);
         }
       };
-      
 
       getById();
     } catch (error) {
@@ -111,16 +139,34 @@ console.log("1",userID)
             <li className="menu-item" onClick={closeMenu}>
               <Link to="/contact">Contact</Link>
             </li>
+
             {isBurgerMenuOpen && (
               <li className="menu-item" onClick={closeMenu}>
-                <Link to="/register">Login</Link>
+                <Link to="/profile">Profile</Link>
+              </li>
+            )}
+
+            {isBurgerMenuOpen && !secureLocalStorage.getItem("token") && (
+              <li
+                className="menu-item"
+                onClick={() => {
+                  closeMenu();
+                  HandleLoginNavigation();
+                }}
+              >
+                <Link>Login</Link>
+              </li>
+            )}
+
+            {isBurgerMenuOpen && secureLocalStorage.getItem("token") && (
+              <li className="menu-item" onClick={handleLogout}>
+                <Link>Logout</Link>
               </li>
             )}
           </ul>
         </div>
 
         <div className="icons-nav">
-     
           <div className="cart-phone">
             <Link to="/cart" className="cart-link">
               <AiOutlineShoppingCart className="cart-icon" />
@@ -132,16 +178,25 @@ console.log("1",userID)
             {isUserDropdownOpen && (
               <div className="user-dropdown" onClick={closeUserDropdown}>
                 <ul className="dropdown-menu">
-
-                  {user && <li className="span-nav-user">Hello <span className="user-name">{user.fullName}</span></li>}
-                  <li>
-                    <span
-                      className="span-nav-login"
-                      onClick={() => handleBuyClick()}
-                    >
-                      Login
-                    </span>
-                  </li>
+                  {user && (
+                    <li className="span-nav-user">
+                      Hello <span className="user-name">{user.fullName}</span>
+                    </li>
+                  )}
+                  {secureLocalStorage.getItem("token") ? (
+                    <li onClick={handleLogout}>
+                      <span>Logout</span>
+                    </li>
+                  ) : (
+                    <li>
+                      <span
+                        className="span-nav-login"
+                        onClick={() => handleBuyClick()}
+                      >
+                        Login
+                      </span>
+                    </li>
+                  )}
                   <li>
                     <Link to="/profile">Profile</Link>
                   </li>
@@ -149,6 +204,8 @@ console.log("1",userID)
               </div>
             )}
           </div>
+
+          <div></div>
         </div>
       </nav>
     </header>

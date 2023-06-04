@@ -102,7 +102,7 @@ const Cart = () => {
           <h1 className="shopping-cart">Shopping Cart</h1>
           <div className="cart-table-view">
             <div className="table-cart">
-              <table>
+              <table className="cart-table-parent">
                 <thead>
                   <tr>
                     <th>Image</th>

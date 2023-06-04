@@ -1,225 +1,90 @@
-// import React, { useEffect, useRef } from "react";
-// import "./Card.css";
-// import image1 from "../assets/casein.jpg";
-// import image from "../assets/download.jpeg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
+import { useNavigate, useLocation } from "react-router-dom";
 
-// function Card() {
-//   const productRefs = useRef([]);
+const Profile = () => {
+  const [orders, setOrders] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const windowBottom = window.scrollY + window.innerHeight;
-//       productRefs.current.forEach((productRef) => {
-//         if (productRef) {
-//           const objectBottom = productRef.offsetTop + productRef.offsetHeight;
+  useEffect(() => {
+    const token = secureLocalStorage.getItem("token");
+    if (!token) {
+      navigate("/register", {
+        state: {
+          previousUrl: location.pathname,
+        },
+      });
+      return;
+    }
 
-//           if (objectBottom < windowBottom) {
-//             if (!productRef.classList.contains("fade-in")) {
-//               productRef.classList.add("fade-in");
-//             }
-//           } else {
-//             if (productRef.classList.contains("fade-in")) {
-//               productRef.classList.remove("fade-in");
-//             }
-//           }
-//         }
-//       });
-//     };
+    try {
+      const tokenPayload = token.split(".")[1];
+      const decodedPayload = JSON.parse(atob(tokenPayload));
+      const userID = decodedPayload.id;
 
-//     window.addEventListener("scroll", handleScroll);
-//     handleScroll(); // Trigger initial check
+      const fetchOrders = async () => {
+        try {
+          const { data } = await axios.get(`https://triplea.onrender.com/order/`);
+          const userOrders = data.filter((order) => order.UserID._id === userID);
+          console.log(userOrders);
+          setOrders(userOrders);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, []);
+      fetchOrders();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [navigate, location.pathname]);
 
-//   return (
-//     <>
-//       <div className="parent-card">
-//         <figure
-//           ref={(el) => (productRefs.current[0] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
+  return (
+    <div>
+      {!secureLocalStorage.getItem("token") ? (
+        <div className="login-first-container">
+          <h1 className="check-h1">Please Login In First!</h1>
+          <button className="check-login" onClick={() => navigate("/login")}>
+            Click Here to Login
+          </button>
+        </div>
+      ) : (
+        <div className="parent-table-profile">
+          <h1 className="profile-title">Your Orders</h1>
+          <div className="profile-container">
+            {orders.map((order) => (
+              order.cart.map((cartItem, index) => (
+                <table className="profile-table" key={`${order._id}-${index}`}>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="td-title-profile" data-label="Product">
+                        {cartItem.name}
+                      </td>
+                      <td data-label="Size">{cartItem.size}</td>
+                      <td data-label="Quantity">{cartItem.quantity}</td>
+                      <td data-label="Price">{cartItem.price}</td>
+                      <td data-label="Total">{order.total}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              ))
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[1] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[2] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[3] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[4] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[5] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[6] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[7] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[8] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//         <figure
-//           ref={(el) => (productRefs.current[9] = el)}
-//           className="product-card fade"
-//         >
-//           <img src={image1} alt="Face mask" className="product-cardimage" />
-
-//           <div class="product-cardcaption">
-//             <header class="product-cardheader">
-//               <h2 class="product-cardtitle">Face mask</h2>
-//               <p className="card-price">100$</p>
-//             </header>
-//             <div className="card-btn">
-//               <button className="details-btn">more details</button>
-//               <button className="add-cart-btn">Add to cart</button>
-//             </div>
-//           </div>
-//         </figure>
-
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Card;
+export default Profile;

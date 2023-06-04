@@ -118,7 +118,7 @@ const Checkout = () => {
       setCart([]);
       setIsSubmitted(true);
       Swal.fire({
-        title: "Submitted Successfully!",
+        title: "Order Submitted Successfully!",
         icon: "success",
         showCancelButton: false,
         confirmButtonColor: "#3085d6",

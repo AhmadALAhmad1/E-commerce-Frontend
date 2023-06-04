@@ -21,7 +21,7 @@ const Card = () => {
   const [message, setMessage] = useState("");
 
 
-
+  
   const successToast = () => {
     toast.success("Product added to Cart", {
       position: "top-center",

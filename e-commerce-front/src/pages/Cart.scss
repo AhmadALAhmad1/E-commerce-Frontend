@@ -302,8 +302,12 @@ td {
 @media screen and (max-width:1094px) {
 
 
-  table {
-      display: none;
+  // table {
+  //     display: none;
+  // }
+
+  .cart-table-parent{
+    display: none;
   }
 
   .cart-item-responsive {
