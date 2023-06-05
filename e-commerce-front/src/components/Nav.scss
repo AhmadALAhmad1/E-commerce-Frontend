@@ -83,7 +83,7 @@ color: $color-black;
 
 }
 
-.dropdown-menu li a,.span-nav-login,.span-nav-user {
+.dropdown-menu li a,.span-nav-login,.span-nav-user,.span-nav-logout {
   color: $color-black;
   display: block;
   font-weight: 700;
@@ -103,7 +103,7 @@ color: $color-black;
 
 
 
-.dropdown-menu li a:hover,.span-nav-login:hover {
+.dropdown-menu li a:hover,.span-nav-login:hover,.span-nav-logout:hover {
   background-color: orange;
   border-radius: 20px;
 

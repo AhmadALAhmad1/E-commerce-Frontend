@@ -12,7 +12,9 @@ const Checkout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || [],
+  );
   const [address, setAddress] = useState({
     firstName: "",
     phone: "",
@@ -85,7 +87,7 @@ const Checkout = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       // console.log(response.data.address._id);
 
@@ -111,7 +113,7 @@ const Checkout = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       localStorage.removeItem("cart");
@@ -137,7 +139,6 @@ const Checkout = () => {
         streetAddress: "",
         building: "",
       });
-
     } catch (error) {
       console.log(error);
       if (
@@ -148,7 +149,7 @@ const Checkout = () => {
         setErrorMessage("Your Cart is empty!");
       } else {
         setErrorMessage(
-          "An error occurred while submitting your order. Please try again."
+          "An error occurred while submitting your order. Please try again.",
         );
       }
     } finally {
@@ -209,11 +210,11 @@ const Checkout = () => {
   //       if (!token) {
   //         return;
   //       }
-  
+
   //       const tokenPayload = token.split(".")[1];
   //       const decodedPayload = JSON.parse(atob(tokenPayload));
   //       const userId = decodedPayload.id;
-  
+
   //       const response = await axios.get(
   //         `https://triplea.onrender.com/address/${userId}`,
   //         {
@@ -222,7 +223,7 @@ const Checkout = () => {
   //           },
   //         }
   //       );
-  
+
   //       const userAddress = response.data.data;
   //       console.log(response)
   //       console.log(response.data)
@@ -239,10 +240,9 @@ const Checkout = () => {
   //       console.log(error);
   //     }
   //   };
-  
+
   //   fetchUserAddress();
   // }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -302,7 +302,7 @@ const Checkout = () => {
 
             <label>
               <span>
-                Town / City <span className="required">*</span>
+                 City <span className="required">*</span>
               </span>
               <input
                 type="text"
@@ -345,8 +345,16 @@ const Checkout = () => {
                 }
               />
             </label>
+            <label>
+              <input className="radio-btn-delivery" type="radio" disabled checked/>
+              Cash on delivery
+            </label>
 
-            <button onClick={handleSubmitOrder} className="btn-checkout" type="button">
+            <button
+              onClick={handleSubmitOrder}
+              className="btn-checkout"
+              type="button"
+            >
               Place Order
             </button>
           </form>

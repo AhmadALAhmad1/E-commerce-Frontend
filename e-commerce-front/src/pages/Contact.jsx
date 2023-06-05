@@ -76,7 +76,7 @@ function Contact() {
               <div class="row">
                 <div class="col-md-5">
                   <div class="title"></div>
-                  <div class="content">
+                  <div class="content-contact">
                     <div class="info">
                       <i class="fas fa-mobile-alt">
                         <FaMobileAlt />

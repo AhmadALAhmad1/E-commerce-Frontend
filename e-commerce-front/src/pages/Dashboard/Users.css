@@ -1,0 +1,187 @@
+.products-dash-table {
+  background-color: #ffffff;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10vh 0vh;
+}
+
+.content h1 {
+  text-align: center;
+  font-size: 30px;
+  border-bottom: 1px solid #ebebeb;
+  color: #ff960c;
+}
+
+.read .create-contact {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #00a511;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+.read .create-contact:hover {
+  background-color: #32a367;
+}
+
+.read .pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.read .pagination a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #a5a7a9;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.read .pagination a:hover {
+  background-color: #999b9d;
+}
+
+.read table {
+  width: 100%;
+  padding-top: 30px;
+  border-collapse: collapse;
+}
+
+.read table thead {
+  background-color: #ebeef1;
+  border-bottom: 1px solid #d3dae0;
+}
+
+.read table thead td {
+  padding: 10px;
+  font-weight: bold;
+  color: #282829;
+  font-size: 16px;
+}
+
+.read table tbody tr {
+  border-bottom: 1px solid #d3dae0;
+  color: black;
+}
+
+.read table tbody tr:nth-child(even) {
+  background-color: #fbfcfc;
+}
+
+.read table tbody tr:hover {
+  background-color: #376ab7;
+}
+
+.read table tbody tr:hover td,
+.read table tbody tr:hover td:nth-child(1) {
+  color: #ffffff;
+}
+
+.read table tbody tr td {
+  padding: 10px;
+}
+
+.read table tbody tr td:nth-child(1) {
+  color: #a5a7a9;
+}
+
+.read table tbody tr td.actions {
+  padding: 8px;
+  text-align: right;
+}
+
+.read table tbody tr td.actions .edit,
+.read table tbody tr td.actions .trash {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 12px;
+}
+
+.read table tbody tr td.actions .trash {
+  background-color: #b73737;
+}
+
+.read table tbody tr td.actions .trash:hover {
+  background-color: #a33131;
+}
+
+.read table tbody tr td.actions .edit {
+  background-color: #37afb7;
+}
+
+.read table tbody tr td.actions .edit:hover {
+  background-color: #319ca3;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.crud-btns {
+  background-color: white;
+
+}
+.edit-btn,
+.delete-btn {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+}
+
+.edit-btn{
+    color: blue;
+
+}
+
+.delete-btn{
+    color: rgb(237, 0, 0);
+}
+
+.btn-go-back{
+  padding: 20px;
+}
+.btn-go-back button {
+  background-color: #000831;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  /* Add additional styles as needed */
+}
+
+.btn-go-back button:hover {
+  background-color: #000;
+}
+
+
+@media (max-width: 768px) {
+  .content {
+    padding: 5vh 0vh;
+  }
+
+  .read table thead td {
+    font-size: 12px;
+  }
+
+  .read table tbody tr td {
+    font-size: 12px;
+  }
+}

@@ -185,7 +185,7 @@ function Nav() {
                   )}
                   {secureLocalStorage.getItem("token") ? (
                     <li onClick={handleLogout}>
-                      <span>Logout</span>
+                      <span className="span-nav-logout">Logout</span>
                     </li>
                   ) : (
                     <li>

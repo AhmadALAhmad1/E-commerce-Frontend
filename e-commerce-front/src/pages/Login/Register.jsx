@@ -196,7 +196,7 @@ const Register = () => {
               Sign In{" "}
             </button>
 
-            <p className="social-text">Or Sign in with social platforms</p>
+            <p className="social-text"></p>
             <div className="social-media">
               <a href="#" className="social-icon">
                 <i className="fab fa-facebook-f">
