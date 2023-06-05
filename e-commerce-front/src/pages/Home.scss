@@ -1233,6 +1233,15 @@ font-size: 18px;
     }
     }
   
+    @media (max-width: 400px) {
+      .home-about{
+        margin-top: 63vh;
+      }
+
+      
+    }
+
+    
 
   @media screen and (min-width: 400px) and (max-width: 430px)
 
@@ -1262,6 +1271,11 @@ font-size: 18px;
     margin-bottom: 128vh;
 
 
+  }
+
+  .home-about{
+      margin-bottom: -49vh;
+  
   }
 }
     @media screen and (max-width: 328px) {

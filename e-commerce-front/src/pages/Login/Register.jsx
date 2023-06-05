@@ -265,7 +265,7 @@ const Register = () => {
               ></input>
             </div>
             <input type="submit" className="btn-login" value="Sign up" />
-            <p className="social-text">Or Sign up with social platforms</p>
+            <p className="social-text"></p>
             <div className="social-media">
               <a href="#" className="social-icon">
                 <i className="fab fa-facebook-f"></i>

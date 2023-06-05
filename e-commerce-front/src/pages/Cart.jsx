@@ -162,7 +162,6 @@ const Cart = () => {
                             <AiFillDelete
                               className="delete-icon-row"
                               onClick={() => handleDelete(item.product_id)}
-                              onTouchEnd={() => handleDelete(item.product_id)}
                             />
                           </td>
                         </tr>
@@ -182,9 +181,9 @@ const Cart = () => {
                     {cart.map((item) => (
                       <div key={item.product_id} className="cart-items-rspnv">
                         <div className="list-rspnv delete-icon">
-                          <MdDeleteForever
+                          <AiFillDelete
                             className="delete-icon-row"
-                            // onClick={() => handleDelete(item.id)}
+                            onClick={() => handleDelete(item.product_id)}
                           />
                         </div>
                         <div className="cart-image-rspnv-div">

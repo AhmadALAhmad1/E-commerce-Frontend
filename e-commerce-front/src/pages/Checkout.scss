@@ -127,7 +127,7 @@ background-color: orange;
 
 .d-flex{
   padding: 0;
-  height: 99vh;
+  height: 108vh;
 
 }
 
@@ -163,4 +163,13 @@ background-color: orange;
 }
 
 
+}
+
+@media screen and (max-width: 600px) {
+
+
+.d-flex{
+  height: 86vh;
+
+}
 }

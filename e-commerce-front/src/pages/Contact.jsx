@@ -65,7 +65,7 @@ function Contact() {
   return (
     <>
       <div className="contact container">
-        <form onSubmit={handleSubmit}>
+        <form className="form-contact-1" onSubmit={handleSubmit}>
           <div className="form-contact">
             <div className="form-txt">
               <h1>Contact Us</h1>

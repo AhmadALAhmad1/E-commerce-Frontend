@@ -39,6 +39,19 @@ const Checkout = () => {
     });
   };
 
+  const warnToast = () => {
+    toast.warn("Your Cart is empty, Add some Products First!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const calculateTotal = () => {
     let total = 0;
     for (const item of cart) {
@@ -52,7 +65,8 @@ const Checkout = () => {
     setErrorMessage("");
     const token = secureLocalStorage.getItem("token");
     if (!token) {
-      window.location.href = "/";
+      warnToast();
+      navigate("/shop");
     }
 
     if (!validateForm()) {
@@ -302,7 +316,7 @@ const Checkout = () => {
 
             <label>
               <span>
-                 City <span className="required">*</span>
+                City <span className="required">*</span>
               </span>
               <input
                 type="text"
@@ -346,7 +360,12 @@ const Checkout = () => {
               />
             </label>
             <label>
-              <input className="radio-btn-delivery" type="radio" disabled checked/>
+              <input
+                className="radio-btn-delivery"
+                type="radio"
+                disabled
+                checked
+              />
               Cash on delivery
             </label>
 

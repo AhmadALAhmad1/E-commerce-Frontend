@@ -174,7 +174,7 @@ color: orange;
     font-weight: 600;
     font-size: 40px;
     letter-spacing: 1.5px;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
 }
 
 .form-contact .form-txt span {
@@ -192,6 +192,8 @@ color: orange;
 }
 .form-contact .form-details {
     flex-basis: 48%;
+
+    margin-top: 13vh;
 }
 
 .form-contact .form-details input[type="text"],
@@ -199,7 +201,7 @@ color: orange;
     padding: 15px 20px;
     outline: none;
     border: 1px solid var(--grey);
-    margin: 35px 15px;
+    // margin: 35px 15px;
     font-size: 14px;
 }
 
@@ -267,10 +269,21 @@ color: orange;
     .form-details{
         max-width: 90%;
     }
+    .contact {
+        margin-top: 0px;
+        height: 100vh;
+    }
 
     .container {
         max-width: 1000px;
 
+    }
+
+    .form-contact{
+        margin-bottom: 66vh;
+    }
+    .form-contact-1{
+        height: 100vh;
     }
 }
 

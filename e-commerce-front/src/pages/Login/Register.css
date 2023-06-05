@@ -355,10 +355,13 @@ height: 55px;
     height: 1500px;
     transform: translateX(-50%);
     left: 30%;
-    bottom: 68%;
     right: initial;
     top: initial;
     transition: 2s ease-in-out;
+
+
+    bottom: 60%;
+    right: initial;
   }
 
   .container-login.sign-up-mode:before {
