@@ -46,3 +46,10 @@
       transform: translateY(10px) scale(1.8) rotate(360deg);
     }
   }
+
+
+  @media  screen and (max-width:650px){
+    .loading {
+height: 100vh;
+    }
+  }

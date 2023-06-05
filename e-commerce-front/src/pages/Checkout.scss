@@ -127,6 +127,8 @@ background-color: orange;
 
 .d-flex{
   padding: 0;
+  height: 99vh;
+
 }
 
 .form-checkout {
@@ -144,7 +146,9 @@ background-color: orange;
 
    padding-right: 0px;
    padding-left: 0px;
-   height: 100vh;
+   height: 110vh;
+   width: 85%;
+
 }
 
 .checkout-table tr > td:nth-child(2) {

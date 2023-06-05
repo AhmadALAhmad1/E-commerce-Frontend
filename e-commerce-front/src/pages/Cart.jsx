@@ -162,6 +162,7 @@ const Cart = () => {
                             <AiFillDelete
                               className="delete-icon-row"
                               onClick={() => handleDelete(item.product_id)}
+                              onTouchEnd={() => handleDelete(item.product_id)}
                             />
                           </td>
                         </tr>

@@ -65,6 +65,11 @@
     color: #ffd52d;
     transition: 0.2s;
   }
+
+
+  .box:hover input {
+    width: 250px;
+  }
 }
 
 /* /////////////////////////////////////// */

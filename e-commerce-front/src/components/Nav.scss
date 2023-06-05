@@ -454,6 +454,16 @@ overflow: visible;
 .nav-toggle{
   right: 222px;
 }
+}
+@media only screen and (max-width: 768px){
+.header .navbar .nav-toggle {
+  
+    right: 55px;
+}
+
+.header .navbar .menu {
+  margin: 20px 52%;
+}
 
 }
 
