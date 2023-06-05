@@ -1139,7 +1139,7 @@ font-size: 18px;
     width: 194px;
     border-width: 8px;
     height: 234px;
-    margin-bottom: 212vh;
+    margin-bottom: 180vh;
 }
 
 .home-about{
@@ -1219,14 +1219,14 @@ font-size: 18px;
   margin-bottom: 0vh;
 
 }
-.about-sec2 {
-  margin: -270px auto;
-}
+// .about-sec2 {
+//   margin: -270px auto;
+// }
 
-    .about-sec2 {
-      margin: -797px auto;
-      margin-bottom: 231vh;
-    }
+//     .about-sec2 {
+//       margin: -797px auto;
+//       margin-bottom: 231vh;
+//     }
 
     .home-about{
       margin-top: 30vh;
@@ -1237,7 +1237,6 @@ font-size: 18px;
       .home-about{
         margin-top: 63vh;
       }
-
       
     }
 
@@ -1247,8 +1246,8 @@ font-size: 18px;
 
 {
     .home-about {
-      height: 28vh;
-      margin-bottom: 63vh;
+      height: 0vh;
+      margin-bottom: 73vh;
       margin-top: -10vh;
     }  
 
@@ -1257,6 +1256,19 @@ font-size: 18px;
   }
   
 }
+
+
+
+@media screen and (max-width: 360px){
+.about-sec1 {
+    display: flex;
+    margin-top: 40vh;
+}
+.Review-Home {
+  margin-top: 0vh;
+}
+}
+
   @media screen and (min-width: 330px) and (max-width: 395px)
   {
     .ul-about{
@@ -1271,11 +1283,6 @@ font-size: 18px;
     margin-bottom: 128vh;
 
 
-  }
-
-  .home-about{
-      margin-bottom: -49vh;
-  
   }
 }
     @media screen and (max-width: 328px) {
