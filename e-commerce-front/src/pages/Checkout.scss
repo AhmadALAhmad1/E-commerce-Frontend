@@ -167,9 +167,17 @@ background-color: orange;
 
 @media screen and (max-width: 600px) {
 
+.container-checkout{
+  margin-bottom:40vh;
+}
 
 .d-flex{
-  height: 86vh;
+  max-height: 120vh;
 
+
+  
 }
 }
+
+
+  

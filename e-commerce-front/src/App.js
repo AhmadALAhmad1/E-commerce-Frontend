@@ -22,11 +22,14 @@ import secureLocalStorage from "react-secure-storage";
 import { Navigate } from "react-router-dom";
 
 function App() {
+
+
   const isAdmin = secureLocalStorage.getItem("role") === "admin";
   const checkAdminAccess = (element) => {
     return isAdmin ? element : <Navigate to="/Error" replace />;
   };
-  // console.log("IsAdmin:", isAdmin);
+  console.log("IsAdmin:", isAdmin);
+
 
   return (
     <>

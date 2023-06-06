@@ -4,7 +4,7 @@ import { BsFacebook } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaInstagram } from "react-icons/fa";
 import { IoIosArrowDropup } from "react-icons/io";
-
+import triple from '../assets/triple-a-high-resolution-logo-color-on-transparent-background.png'
 const Footer = () => {
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -20,7 +20,7 @@ const Footer = () => {
 
       <footer className="footer">
         <div className="footer__addr">
-          <h1 className="footer__logo">TRIPLE-A</h1>
+         <img  className="triplea" src={triple} />
 
           <h2>Contact</h2>
 

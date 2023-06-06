@@ -7,7 +7,7 @@ import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import triple from '../assets/triple-a-high-resolution-logo-color-on-transparent-background.png'
 function Nav() {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -110,7 +110,7 @@ function Nav() {
         </div> */}
 
         <a className="brand" href="/">
-          Triple A
+         <img className="triple-a" src={triple} />
         </a>
         <input
           type="checkbox"

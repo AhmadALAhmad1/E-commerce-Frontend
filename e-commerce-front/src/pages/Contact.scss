@@ -36,7 +36,9 @@
     border-radius: 10px;
 }
 
-#email-contact{    padding: 15px 20px ;}
+#email-contact{    padding: 15px 20px ;
+
+}
 
 .form-txt h1{color: orange;}
 
@@ -108,7 +110,8 @@ color: orange;
 
 .form-contact .form-details textarea {
     padding: 15px 20px;
-    margin: 0 15px;
+    // margin: 0 15px;
+    margin-top: 10px;
     outline: none;
     border: 1px solid var(--grey);
     font-size: 14px;
